@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dtldi2gmay2w6"]
+
+[ext_resource type="Script" uid="uid://vry8xc5pw8yv" path="res://opp.gd" id="1_8182q"]
+[ext_resource type="Script" uid="uid://bhreaj1xputgv" path="res://health.gd" id="2_h02yy"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a0tk4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3fl7"]
+albedo_color = Color(0.8990396, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jka67"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a0tk4"]
+radius = 0.7045378
+
+[node name="opp" type="CharacterBody3D" unique_id=378033695 groups=["opps"]]
+script = ExtResource("1_8182q")
+damage = 30
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=379662958]
+mesh = SubResource("CapsuleMesh_a0tk4")
+surface_material_override/0 = SubResource("StandardMaterial3D_r3fl7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=592317955]
+shape = SubResource("CapsuleShape3D_jka67")
+
+[node name="Health" type="Node" parent="." unique_id=1299917283]
+script = ExtResource("2_h02yy")
+metadata/_custom_type_script = "uid://bhreaj1xputgv"
+
+[node name="AttackArea" type="Area3D" parent="." unique_id=813436399]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea" unique_id=857183112 groups=["player"]]
+shape = SubResource("SphereShape3D_a0tk4")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=390284340]
