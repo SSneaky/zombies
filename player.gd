@@ -13,6 +13,8 @@ const MOUSE_SENS:float = 0.01
 var ammo: int = MAX_AMMO
 var reloading: bool = false
 var fire_cooldown_left: float = 0.0
+var last_pos: Vector3
+var kills: int = 0
 
 
 @onready var neck: Node3D = $neck
@@ -27,6 +29,7 @@ var fire_cooldown_left: float = 0.0
 @onready var shot_sound: AudioStreamPlayer = $ShotSound
 @onready var empty_sound: AudioStreamPlayer = $EmptySound
 @onready var reload_sound: AudioStreamPlayer = $ReloadSound
+@onready var kills_label: Label = $HUD/KillsLabel
 
 
 
@@ -36,6 +39,7 @@ func _ready() -> void:
 	health.died.connect(_on_died)
 	_on_health_changed(health.current_health, health.max_health)
 	_update_ammo_label()
+	_update_kills_label()
 
 func _on_health_changed(current: int, maximum: int) -> void:
 	health_bar.max_value = maximum
@@ -94,7 +98,16 @@ func _shot_feedback() -> void:
 	await get_tree().create_timer(0.05).timeout
 	muzzle_light.visible = false
 
+func add_kill() -> void:
+	kills += 1
+	_update_kills_label()
+func _update_kills_label() -> void:
+	kills_label.text = "Kills %d" % kills
+
 func _physics_process(delta: float) -> void:
+	if global_position.distance_to(last_pos) > 1.0:
+		print('player jumped: ', last_pos, ' -> ', global_position, " at ", Time.get_ticks_msec(), " ms")
+	last_pos = global_position
 #gun logic
 	fire_cooldown_left -= delta
 	

@@ -16,7 +16,7 @@ var cooldown_left: float = 0.0
 var hurt_material := StandardMaterial3D.new()
 
 func _ready() -> void:
-	health.died.connect(queue_free)
+	health.died.connect(_on_died)
 	attack_area.body_entered.connect(_on_body_entered)
 	attack_area.body_exited.connect(_on_body_excited)
 	hurt_material.albedo_color = Color.WHITE
@@ -35,6 +35,11 @@ func _on_body_entered(body: Node3D) -> void:
 func _on_body_excited(body: Node3D) -> void:
 	if body == player_in_range:
 		player_in_range = null
+
+func _on_died() -> void:
+	if player:
+		player.add_kill()
+	queue_free()
 
 func _physics_process(delta: float) -> void:
 	cooldown_left -= delta

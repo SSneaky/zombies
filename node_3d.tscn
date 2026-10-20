@@ -89,7 +89,7 @@ environment = SubResource("Environment_noarx")
 
 [node name="player" type="CharacterBody3D" parent="." unique_id=571306172 groups=["player"]]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1493111, 0)
+transform = Transform3D(-0.06686908, 0, 0.9977618, 0, 1, 0, -0.9977618, 0, -0.06686908, 6.2684994, 1.5607417, 0)
 script = ExtResource("1_a202f")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player" unique_id=1359214587]
@@ -159,6 +159,12 @@ anchor_bottom = 1.0
 offset_top = -23.0
 offset_right = 1.0
 grow_vertical = 0
+
+[node name="KillsLabel" type="Label" parent="player/HUD" unique_id=627184974]
+offset_top = 602.0
+offset_right = 50.0
+offset_bottom = 625.0
+text = "Kills: 0"
 
 [node name="ShotSound" type="AudioStreamPlayer" parent="player" unique_id=632472034]
 stream = ExtResource("3_wc5p8")
