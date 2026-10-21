@@ -30,6 +30,7 @@ var kills: int = 0
 @onready var empty_sound: AudioStreamPlayer = $EmptySound
 @onready var reload_sound: AudioStreamPlayer = $ReloadSound
 @onready var kills_label: Label = $HUD/KillsLabel
+@onready var game_over_screen: GameOverScreen = $HUD/GameOverScreen
 
 
 
@@ -46,7 +47,8 @@ func _on_health_changed(current: int, maximum: int) -> void:
 	health_bar.value = current
 
 func _on_died() -> void:
-	get_tree().reload_current_scene()
+	game_over_screen.show_screen(kills)
+
 #mouse cursor logic
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("exit") && Input.MOUSE_MODE_CAPTURED:
