@@ -21,7 +21,7 @@ var kills: int = 0
 @onready var health: Health = $Health
 @onready var health_bar: ProgressBar = $HUD/HealthBar
 @onready var camera: Camera3D = $neck/POV
-@onready var ray: RayCast3D = $neck/RayCast3D
+@onready var ray: RayCast3D = $neck/GunMesh/RayCast3D
 @onready var ammo_label: Label = $HUD/AmmoLabel
 @onready var gun: Node3D = $neck/GunMesh
 @onready var muzzle_light: OmniLight3D = $neck/GunMesh/MuzzleFlash
@@ -91,7 +91,7 @@ func _shot_feedback() -> void:
 	shot_sound.play()
 	
 	var tween := create_tween()
-	tween.tween_property(gun, "position", gun_rest_pos + Vector3(0, 0, 0.06), 0.04)
+	tween.tween_property(gun, "position", gun_rest_pos + Vector3(0, 0.2, 0.06), 0.04)
 	tween.tween_property(gun, "position", gun_rest_pos, 0.12)
 	
 	muzzle_light.visible = true

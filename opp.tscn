@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://vry8xc5pw8yv" path="res://opp.gd" id="1_8182q"]
 [ext_resource type="Script" uid="uid://bhreaj1xputgv" path="res://health.gd" id="2_h02yy"]
+[ext_resource type="AudioStream" uid="uid://dhm2dwkbkqwym" path="res://Minecraft zombie sound effect.wav" id="3_ng1nb"]
+[ext_resource type="AudioStream" uid="uid://bc7p6c6til31t" path="res://Zombie Death (Minecraft) - Sound Effect HD - Part_1.wav" id="4_ng1nb"]
+[ext_resource type="AudioStream" uid="uid://clmswki3ku2f2" path="res://The Office- Michael Scott  No God No - Part_1.wav" id="5_ng1nb"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_a0tk4"]
 
@@ -34,3 +37,18 @@ metadata/_custom_type_script = "uid://bhreaj1xputgv"
 shape = SubResource("SphereShape3D_a0tk4")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=390284340]
+
+[node name="IdleSound" type="AudioStreamPlayer3D" parent="." unique_id=364944673]
+stream = ExtResource("3_ng1nb")
+
+[node name="HurtSound" type="AudioStreamPlayer3D" parent="." unique_id=1465299724]
+stream = ExtResource("4_ng1nb")
+volume_db = 29.833
+unit_size = 40.58
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="." unique_id=2059343037]
+stream = ExtResource("5_ng1nb")
+volume_db = 22.943
+unit_size = 19.4
+
+[node name="IdleTimer" type="Timer" parent="." unique_id=422322979]

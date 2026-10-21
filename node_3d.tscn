@@ -110,7 +110,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.3, 0, 0, 0, 1, 0.66378254, -0.35518575, 
 mesh = SubResource("BoxMesh_a202f")
 
 [node name="MuzzleFlash" type="OmniLight3D" parent="player/neck/GunMesh" unique_id=955892910]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26742125, -0.52639836)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26742125, -0.29638702)
 visible = false
 light_color = Color(1, 0.8666667, 0.23137255, 1)
 light_energy = 3.105
@@ -119,20 +119,20 @@ shadow_opacity = 0.87
 shadow_blur = 7.854
 omni_range = 18.294
 
-[node name="SpotLight3D" type="SpotLight3D" parent="player/neck/GunMesh" unique_id=1496749715]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06756073, -0.055539966, -0.21217102)
+[node name="FlashLight" type="SpotLight3D" parent="player/neck/GunMesh" unique_id=1496749715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06756073, -0.26240337, -0.21217102)
 light_energy = 3.215
 light_size = 0.566
 shadow_enabled = true
 spot_range = 32.463097
 spot_angle = 35.246826
 
-[node name="RayCast3D" type="RayCast3D" parent="player/neck" unique_id=283772370]
-transform = Transform3D(1, 0, 0, 0, -3.059797e-07, 1, 0, -7, -4.371139e-08, 0.67545116, -0.26601657, -0.70454365)
+[node name="RayCast3D" type="RayCast3D" parent="player/neck/GunMesh" unique_id=283772370]
+transform = Transform3D(9.999999, 4.7683716e-07, 1.7763568e-15, 0, -1.0199323e-06, 3.3333328, 0, -7, -4.3711385e-08, 0.11668682, 0.71225786, -0.20556593)
 target_position = Vector3(0, 10, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="player/neck/RayCast3D" unique_id=1248927135]
-transform = Transform3D(0.035, 0, 0, 0, 14.99017, -0.00083253544, 0, 0.5429579, 0.022984928, 0, 7.462138, 0.1569447)
+[node name="GunLaser" type="MeshInstance3D" parent="player/neck/GunMesh/RayCast3D" unique_id=1248927135]
+transform = Transform3D(-0.019999998, 0, 0, -1.4551915e-11, 14.990169, -0.00072394585, 0, 0.5429594, 0.019986892, -8.940697e-08, 7.4689445, -0.030987144)
 mesh = SubResource("TubeTrailMesh_noarx")
 surface_material_override/0 = SubResource("StandardMaterial3D_a0tk4")
 
