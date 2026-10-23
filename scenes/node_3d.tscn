@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://blf7ckkdggd6g" path="res://Scripts/crosshair.gd" id="9_6l3rs"]
 [ext_resource type="AudioStream" uid="uid://cqxprp7vjdby4" path="res://assets/xpmonster-toy-gun-reloading-amp-shooting-419582.mp3" id="9_aj7ea"]
 [ext_resource type="Script" uid="uid://mrit4d7kccj7" path="res://Scripts/zombie_spawner.gd" id="10_2u1at"]
-[ext_resource type="PackedScene" uid="uid://dtldi2gmay2w6" path="res://extras/opp_copy.tscn" id="11_dn2ro"]
+[ext_resource type="PackedScene" uid="uid://b5hagdvhitign" path="res://scenes/opp.tscn" id="14_6l3rs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4xowi"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -103,13 +103,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8626451e-09, 0.08741486, -0
 rotation_order = 0
 current = true
 
+[node name="RayCast3D" type="RayCast3D" parent="player/neck/POV" unique_id=1869427275]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.3711392e-08, 0, -0.00041484833, -0.00043010712)
+target_position = Vector3(0, 10, 0)
+
 [node name="3rdPerson" type="Camera3D" parent="player/neck" unique_id=1105508270]
 transform = Transform3D(1, 0, 0, 0, 0.94195485, 0.33573943, 0, -0.33573943, 0.94195485, 1.3387762e-09, 1.2212585, 2.0318382)
 rotation_order = 0
-
-[node name="RayCast3D" type="RayCast3D" parent="player/neck" unique_id=1869427275]
-transform = Transform3D(10, 4.7683716e-07, 1.7763568e-15, 0, -1.0199323e-06, 3.3333328, 0, -7, -4.3711385e-08, 0, 0.19899988, -0.20599985)
-target_position = Vector3(0, 10, 0)
 
 [node name="GunHolder" type="Node3D" parent="player/neck" unique_id=76071365]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6412536, -0.38358498, -0.47133014)
@@ -215,10 +215,6 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = -20.0
-offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_6l3rs")
@@ -245,7 +241,7 @@ omni_range = 13.774828
 [node name="ZombieSpawner" type="Node3D" parent="." unique_id=907975378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0191898, -0.9519602, -1.4252374)
 script = ExtResource("10_2u1at")
-zombie_scene = ExtResource("11_dn2ro")
+zombie_scene = ExtResource("14_6l3rs")
 
 [node name="Marker3D" type="Marker3D" parent="ZombieSpawner" unique_id=1526393998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.412899, 7.3994694, 2.3259697)

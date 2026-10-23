@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://vry8xc5pw8yv" path="res://Scripts/opp.gd" id="1_8182q"]
 [ext_resource type="Script" uid="uid://bhreaj1xputgv" path="res://Scripts/health.gd" id="2_h02yy"]
 [ext_resource type="AudioStream" uid="uid://dhm2dwkbkqwym" path="res://assets/Minecraft zombie sound effect.wav" id="3_ng1nb"]
-[ext_resource type="AudioStream" uid="uid://clmswki3ku2f2" path="res://assets/The Office- Michael Scott  No God No - Part_1.wav" id="4_ng1nb"]
+[ext_resource type="AudioStream" uid="uid://bc7p6c6til31t" path="res://assets/Zombie Death (Minecraft) - Sound Effect HD - Part_1.wav" id="4_dnsgf"]
 [ext_resource type="AudioStream" uid="uid://clmswki3ku2f2" path="res://assets/The Office- Michael Scott  No God No - Part_1.wav" id="5_ng1nb"]
+[ext_resource type="AudioStream" uid="uid://f7l0jydfdarl" path="res://assets/freesound_community-zombie-bite-96528.mp3" id="5_p52jf"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_a0tk4"]
 
@@ -42,12 +43,17 @@ shape = SubResource("SphereShape3D_a0tk4")
 stream = ExtResource("3_ng1nb")
 
 [node name="HurtSound" type="AudioStreamPlayer3D" parent="." unique_id=1465299724]
-stream = ExtResource("4_ng1nb")
+stream = ExtResource("4_dnsgf")
 volume_db = 29.833
 unit_size = 40.58
 
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="." unique_id=2059343037]
 stream = ExtResource("5_ng1nb")
+volume_db = 22.943
+unit_size = 19.4
+
+[node name="AttackSound" type="AudioStreamPlayer3D" parent="." unique_id=1203571038]
+stream = ExtResource("5_p52jf")
 volume_db = 22.943
 unit_size = 19.4
 

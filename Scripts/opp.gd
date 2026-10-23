@@ -12,6 +12,7 @@ extends CharacterBody3D
 @onready var idle_sound: AudioStreamPlayer3D = $IdleSound
 @onready var hurt_sound: AudioStreamPlayer3D = $HurtSound
 @onready var death_sound: AudioStreamPlayer3D = $DeathSound
+@onready var attack_sound: AudioStreamPlayer3D = $AttackSound
 @onready var idle_timer: Timer = $IdleTimer
 
 
@@ -78,6 +79,8 @@ func _physics_process(delta: float) -> void:
 	
 	if player_in_range and cooldown_left <= 0.0:
 		player_in_range.get_node("Health").take_damage(damage) 
+		attack_sound.pitch_scale = randf_range(0.5, 1.9)
+		attack_sound.play()
 		cooldown_left = attack_cooldown
 	# Add the gravity.
 	if not is_on_floor():

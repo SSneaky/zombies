@@ -24,7 +24,7 @@ var kills: int = 0
 @onready var health: Health = $Health
 @onready var health_bar: ProgressBar = $HUD/HealthBar
 @onready var camera: Camera3D = $neck/POV
-@onready var ray: RayCast3D = $neck/RayCast3D
+@onready var ray: RayCast3D = $neck/POV/RayCast3D
 @onready var ammo_label: Label = $HUD/AmmoLabel
 @onready var muzzle_light: OmniLight3D = $neck/GunHolder/MuzzleFlash
 @onready var gun_rest_pos: Vector3 = gun_holder.position
@@ -46,6 +46,7 @@ func _ready() -> void:
 		ammo.append(w.mag_size)
 	_equip(0)
 	_update_kills_label()
+
 
 func _on_health_changed(ahora: int, maximum: int) -> void:
 	health_bar.max_value = maximum
