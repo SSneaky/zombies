@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bbpu8iv14t1oa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a202f"]
+size = Vector3(1, 1, 0.52648926)
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_noarx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0tk4"]
+transparency = 1
+emission_enabled = true
+emission = Color(0, 1, 0.049999952, 1)
+emission_energy_multiplier = 10.19
+disable_receive_shadows = true
+
+[node name="GunMesh" type="MeshInstance3D" unique_id=2088814401]
+transform = Transform3D(0.1, 0, 0, 0, 0.3, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_a202f")
+
+[node name="FlashLight" type="SpotLight3D" parent="." unique_id=655770839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.262, -0.201)
+light_energy = 3.215
+light_size = 0.566
+shadow_enabled = true
+spot_range = 32.463097
+spot_angle = 35.246826
+
+[node name="GunLaser" type="MeshInstance3D" parent="." unique_id=1406445066]
+transform = Transform3D(-0.19999996, 7.1478694e-06, -3.4520425e-10, 1.4841968e-17, 1.8098491, 0.066622965, 1.0186341e-10, -104.93118, 0.00506762, 0, 0.609, -52.488)
+mesh = SubResource("TubeTrailMesh_noarx")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_a0tk4")

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://deuyjmbmfrh4l"]
+
+[ext_resource type="AudioStream" uid="uid://bhgbu4c2dccy2" path="res://assets/freesound_community-empty-gun-shot-6209.mp3" id="1_hmosw"]
+[ext_resource type="PackedScene" uid="uid://3lw3q8fdnisc" path="res://scenes/shotty.tscn" id="1_lmer5"]
+[ext_resource type="Script" uid="uid://lcvg17qkof2j" path="res://Scripts/weapon_data.gd" id="2_npcdx"]
+[ext_resource type="AudioStream" uid="uid://cqxprp7vjdby4" path="res://assets/xpmonster-toy-gun-reloading-amp-shooting-419582.mp3" id="3_vgead"]
+[ext_resource type="AudioStream" uid="uid://c5fkfabpl0ee6" path="res://assets/universfield-gunshot-352466.mp3" id="5_a6s4h"]
+
+[resource]
+script = ExtResource("2_npcdx")
+weapon_name = "Shotty"
+damage = 33
+fire_cooldown = 0.5
+pellets = 50
+spread_degrees = 40.0
+max_range = 25.0
+mag_size = 8
+reload_time = 1.0
+recoil_kick = 0.12
+model_scene = ExtResource("1_lmer5")
+shot_sound = ExtResource("5_a6s4h")
+reload_sound = ExtResource("3_vgead")
+empty_sound = ExtResource("1_hmosw")
+metadata/_custom_type_script = "uid://lcvg17qkof2j"

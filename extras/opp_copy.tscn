@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dtldi2gmay2w6"]
 
-[ext_resource type="Script" uid="uid://vry8xc5pw8yv" path="res://opp.gd" id="1_8182q"]
-[ext_resource type="Script" uid="uid://bhreaj1xputgv" path="res://health.gd" id="2_h02yy"]
-[ext_resource type="AudioStream" uid="uid://dhm2dwkbkqwym" path="res://Minecraft zombie sound effect.wav" id="3_ng1nb"]
-[ext_resource type="AudioStream" uid="uid://bc7p6c6til31t" path="res://Zombie Death (Minecraft) - Sound Effect HD - Part_1.wav" id="4_ng1nb"]
-[ext_resource type="AudioStream" uid="uid://clmswki3ku2f2" path="res://The Office- Michael Scott  No God No - Part_1.wav" id="5_ng1nb"]
+[ext_resource type="Script" uid="uid://vry8xc5pw8yv" path="res://Scripts/opp.gd" id="1_8182q"]
+[ext_resource type="Script" uid="uid://bhreaj1xputgv" path="res://Scripts/health.gd" id="2_h02yy"]
+[ext_resource type="AudioStream" uid="uid://dhm2dwkbkqwym" path="res://assets/Minecraft zombie sound effect.wav" id="3_ng1nb"]
+[ext_resource type="AudioStream" uid="uid://bc7p6c6til31t" path="res://assets/Zombie Death (Minecraft) - Sound Effect HD - Part_1.wav" id="4_ng1nb"]
+[ext_resource type="AudioStream" uid="uid://clmswki3ku2f2" path="res://assets/The Office- Michael Scott  No God No - Part_1.wav" id="5_ng1nb"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_a0tk4"]
 

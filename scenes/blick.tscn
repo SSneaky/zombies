@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bg2lcy7ccy06s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a202f"]
+size = Vector3(1, 1, 0.52648926)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ch3y1"]
+size = Vector3(0.1, 0.1, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j446d"]
+transparency = 1
+emission_enabled = true
+emission = Color(0, 1, 0.050980393, 1)
+emission_energy_multiplier = 10.19
+disable_receive_shadows = true
+
+[node name="GunMesh" type="MeshInstance3D" unique_id=2088814401]
+transform = Transform3D(0.1, 0, 0, 0, 0.3, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_a202f")
+
+[node name="FlashLight" type="SpotLight3D" parent="." unique_id=655770839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.262, -0.201)
+light_energy = 3.215
+light_size = 0.566
+shadow_enabled = true
+spot_range = 32.463097
+spot_angle = 35.246826
+
+[node name="LaserRight" type="Node3D" parent="." unique_id=1366260866]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.08300063, -0.26349184, -0.26413783)
+
+[node name="Beam" type="MeshInstance3D" parent="LaserRight" unique_id=401620979]
+transform = Transform3D(1.4198768, 0, 0, 0, 0.40836748, 0, 0, 0, 1.0000004, 0, 0, 4)
+mesh = SubResource("BoxMesh_ch3y1")
+surface_material_override/0 = SubResource("StandardMaterial3D_j446d")

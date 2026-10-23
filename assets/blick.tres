@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bxe1i0y5gyuag"]
+
+[ext_resource type="Script" uid="uid://lcvg17qkof2j" path="res://Scripts/weapon_data.gd" id="1_rtdlw"]
+[ext_resource type="AudioStream" uid="uid://bhgbu4c2dccy2" path="res://assets/freesound_community-empty-gun-shot-6209.mp3" id="1_v0417"]
+[ext_resource type="PackedScene" uid="uid://bbpu8iv14t1oa" path="res://extras/blick_copy.tscn" id="2_60y4k"]
+[ext_resource type="AudioStream" uid="uid://cqxprp7vjdby4" path="res://assets/xpmonster-toy-gun-reloading-amp-shooting-419582.mp3" id="3_4gyan"]
+[ext_resource type="AudioStream" uid="uid://c5fkfabpl0ee6" path="res://assets/universfield-gunshot-352466.mp3" id="5_eb16o"]
+
+[resource]
+script = ExtResource("1_rtdlw")
+damage = 35
+spread_degrees = 5.0
+model_scene = ExtResource("2_60y4k")
+shot_sound = ExtResource("5_eb16o")
+reload_sound = ExtResource("3_4gyan")
+empty_sound = ExtResource("1_v0417")
+metadata/_custom_type_script = "uid://lcvg17qkof2j"

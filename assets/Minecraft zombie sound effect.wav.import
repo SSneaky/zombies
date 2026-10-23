@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dhm2dwkbkqwym"
-path="res://.godot/imported/Minecraft zombie sound effect.wav-e4c8cbcb8119e563a7d9aaa5357d94e0.sample"
+path="res://.godot/imported/Minecraft zombie sound effect.wav-e67f581ce4aae6fd76a405f687cc9489.sample"
 
 [deps]
 
-source_file="res://Minecraft zombie sound effect.wav"
-dest_files=["res://.godot/imported/Minecraft zombie sound effect.wav-e4c8cbcb8119e563a7d9aaa5357d94e0.sample"]
+source_file="res://assets/Minecraft zombie sound effect.wav"
+dest_files=["res://.godot/imported/Minecraft zombie sound effect.wav-e67f581ce4aae6fd76a405f687cc9489.sample"]
 
 [params]
 

@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://3lw3q8fdnisc"]
+
+[ext_resource type="Script" uid="uid://cx1kci7ai0omd" path="res://Scripts/shotty_lasers.gd" id="1_nail3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_74n7r"]
+size = Vector3(1, 2.9556885, 1.3739014)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lw3ka"]
+size = Vector3(0.01, 0.01, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yx4t4"]
+transparency = 1
+emission_enabled = true
+emission = Color(0.78039217, 0.3882353, 0.15686275, 1)
+emission_energy_multiplier = 10.19
+disable_receive_shadows = true
+
+[node name="Node3D" type="Node3D" unique_id=1071684205]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_nail3")
+
+[node name="GunMesh" type="MeshInstance3D" parent="." unique_id=1418700747]
+transform = Transform3D(0.19458458, 0, 0, 0, 0.16253527, 0, 0, 0, 0.5103779, -0.0014368333, 0, -5.9008726e-05)
+mesh = SubResource("BoxMesh_74n7r")
+
+[node name="LaserLeft" type="Node3D" parent="." unique_id=1646223513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049, -0.036, 0.256)
+
+[node name="Beam" type="MeshInstance3D" parent="LaserLeft" unique_id=249647794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+mesh = SubResource("BoxMesh_lw3ka")
+surface_material_override/0 = SubResource("StandardMaterial3D_yx4t4")
+
+[node name="LaserRight" type="Node3D" parent="." unique_id=971814714]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.048869565, -0.035972156, 0.2564991)
+
+[node name="Beam" type="MeshInstance3D" parent="LaserRight" unique_id=1097705013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+mesh = SubResource("BoxMesh_lw3ka")
+surface_material_override/0 = SubResource("StandardMaterial3D_yx4t4")
+
+[node name="FlashLight" type="SpotLight3D" parent="." unique_id=1802053289]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.82097e-10, -0.028805114, 0.27337477)
+light_color = Color(0.2347951, 0, 0, 1)
+light_energy = 0.745
+light_size = 0.566
+shadow_enabled = true
+spot_range = 12.524945
+spot_angle = 65.879944
