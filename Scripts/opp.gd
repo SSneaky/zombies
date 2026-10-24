@@ -3,6 +3,8 @@ extends CharacterBody3D
 @export var damage: int = 10
 @export var attack_cooldown: float = 1.0
 @export var speed: float = 3.0
+@export var drops: Array[PackedScene] = []
+@export var drop_chance: float = 0.25
 
 @onready var attack_area: Area3D = $AttackArea
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
@@ -61,10 +63,15 @@ func _on_died() -> void:
 	idle_timer.stop()
 	mesh.hide()
 	death_sound.play()
+	if not drops.is_empty() and randf() < drop_chance:
+		var world := get_parent() as Node3D
+		var drop: Node3D = drops.pick_random().instantiate()
+		drop.position = world.to_local(global_position) + Vector3(0, 0.3, 0)
+		world.add_child(drop)
 	if death_sound.stream:
 		await death_sound.finished
 	queue_free()
-	
+
 func _on_idle_timer() -> void:
 	idle_sound.pitch_scale = randf_range(0.5, 1.9)
 	idle_sound.play()

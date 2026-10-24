@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cx1kci7ai0omd" path="res://Scripts/shotty_lasers.gd" id="1_nail3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_74n7r"]
-size = Vector3(1, 2.9556885, 1.9066772)
+size = Vector3(1, 1.654602, 1.9066772)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lw3ka"]
 size = Vector3(0.01, 0.01, 8)
@@ -20,27 +20,27 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 script = ExtResource("1_nail3")
 
 [node name="GunMesh" type="MeshInstance3D" parent="." unique_id=1418700747]
-transform = Transform3D(0.19458458, 0, 0, 0, 0.16253527, 0, 0, 0, 0.5103779, -0.0014368333, 0, -0.13601752)
+transform = Transform3D(0.19458458, 0, 0, 0, 0.16253527, 0, 0, 0, 0.5103779, 0.6404996, -0.03916709, -0.31251594)
 mesh = SubResource("BoxMesh_74n7r")
 
-[node name="LaserLeft" type="Node3D" parent="." unique_id=1646223513]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049, -0.036, 0.256)
+[node name="LaserLeft" type="Node3D" parent="GunMesh" unique_id=1646223513]
+transform = Transform3D(5.139154, 0, 2.842171e-14, 0, 6.152511, 0, -1.4210855e-14, 0, 1.9593327, 0.25920266, -0.2214904, 0.76809275)
 
-[node name="Beam" type="MeshInstance3D" parent="LaserLeft" unique_id=249647794]
+[node name="Beam" type="MeshInstance3D" parent="GunMesh/LaserLeft" unique_id=249647794]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 mesh = SubResource("BoxMesh_lw3ka")
 surface_material_override/0 = SubResource("StandardMaterial3D_yx4t4")
 
-[node name="LaserRight" type="Node3D" parent="." unique_id=971814714]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.048869565, -0.035972156, 0.2564991)
+[node name="LaserRight" type="Node3D" parent="GunMesh" unique_id=971814714]
+transform = Transform3D(5.139154, 0, 2.842171e-14, 0, 6.152511, 0, -1.4210855e-14, 0, 1.9593327, -0.24376412, -0.2213191, 0.7690707)
 
-[node name="Beam" type="MeshInstance3D" parent="LaserRight" unique_id=1097705013]
+[node name="Beam" type="MeshInstance3D" parent="GunMesh/LaserRight" unique_id=1097705013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 mesh = SubResource("BoxMesh_lw3ka")
 surface_material_override/0 = SubResource("StandardMaterial3D_yx4t4")
 
-[node name="FlashLight" type="SpotLight3D" parent="." unique_id=1802053289]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.82097e-10, -0.028805114, 0.27337477)
+[node name="FlashLight" type="SpotLight3D" parent="GunMesh" unique_id=1802053289]
+transform = Transform3D(-5.139154, 0, -4.4927913e-07, 0, 6.152511, 0, 1.7129032e-07, 0, -1.9593327, 0.0073841084, -0.17722379, 0.8021357)
 light_color = Color(0.2347951, 0, 0, 1)
 light_energy = 0.745
 light_size = 0.566

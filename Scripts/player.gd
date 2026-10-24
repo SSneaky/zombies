@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 
-const WALK_SPEED = 5.0
-const SPRINT_SPEED = 8.0
+const WALK_SPEED = 6.0
+const SPRINT_SPEED = 10.0
 const JUMP_VELOCITY = 6.0
 const MOUSE_SENS:float = 0.01
 
@@ -16,6 +16,7 @@ const MOUSE_SENS:float = 0.01
 var current_index: int = 0
 var current: WeaponData
 var ammo: Array[int] = []
+var reserve: Dictionary = {}
 var reloading: bool = false
 var fire_cooldown_left: float = 0.0
 var last_pos: Vector3
@@ -42,6 +43,7 @@ var kills: int = 0
 @onready var kills_label: Label = $HUD/KillsLabel
 @onready var game_over_screen: GameOverScreen = $HUD/GameOverScreen
 @onready var crosshair: Control = $HUD/Control
+@onready var pickup_label: Label = $HUD/PickupLabel
 
 
 
@@ -56,6 +58,9 @@ func _ready() -> void:
 	body_mesh.visible = false
 	for w in weapons:
 		ammo.append(w.mag_size)
+	for w in weapons:
+		if not reserve.has(w.ammo_type):
+			reserve[w.ammo_type] = w.starting_reserve
 	_equip(0)
 	_update_kills_label()
 
@@ -104,16 +109,18 @@ func _equip(index: int) -> void:
 		return
 	current_index = index
 	current = weapons[index]
-	print("Equipping ", current.weapon_name, " -> ", current.model_scene.resource_path if current.model_scene else "NO MODEL SCENE")
-	
 	for child in model_slot.get_children():
 		child.queue_free()
 	if current.model_scene:
-		model_slot.add_child(current.model_scene.instantiate())
+		var model := current.model_scene.instantiate()
+		model_slot.add_child(model)
+		if model.has_method("set_spread"):
+			model.set_spread(current.spread_degrees)
 	shot_sound.stream = current.shot_sound
 	reload_sound.stream = current.reload_sound
 	empty_sound.stream = current.empty_sound
 	ray.target_position = Vector3(0, 0, -current.max_range)
+	crosshair.gap = 5.0 + current.spread_degrees * 4.0
 	_update_ammo_label()
 	if current.model_scene:
 		var model := current.model_scene.instantiate()
@@ -141,18 +148,45 @@ func _fire_pellet() -> void:
 	ray.rotation = Vector3.ZERO
 
 func _reload() -> void:
-	if reloading or ammo[current_index] == current.mag_size:
+	var ammo_type := current.ammo_type
+	if reloading or ammo[current_index] == current.mag_size or reserve.get(ammo_type, 0) <= 0:
 		return
 	reloading = true
 	ammo_label.text = "Reloading..."
 	reload_sound.play()
 	await get_tree().create_timer(current.reload_time).timeout
-	ammo[current_index] = current.mag_size
+	var needed := current.mag_size - ammo[current_index]
+	var taken := mini(needed, reserve[ammo_type])
+	ammo[current_index] += taken
+	reserve[ammo_type] -= taken
 	reloading = false
 	_update_ammo_label()
 
+func add_ammo(ammo_type: String, amount: int) -> bool:
+	var cap:= _max_reserve_for(ammo_type)
+	var have: int = reserve.get(ammo_type, 0)
+	
+	if have >= cap:
+		return false
+	reserve[ammo_type] = mini(have + amount, cap)
+	reload_sound.play()
+	_update_ammo_label()
+	return true
+
+func _max_reserve_for(ammo_type: String) -> int:
+	var most := 0
+	for w in weapons:
+		if w.ammo_type == ammo_type:
+			most = maxi(most, w.max_reserve)
+	return most
+
 func _update_ammo_label() -> void:
-	ammo_label.text = "%s %d / %d" % [current.weapon_name, ammo[current_index], current.mag_size]
+	ammo_label.text = "%s %d / %d" % [current.weapon_name, ammo[current_index], reserve.get(current.ammo_type, 0)]
+
+func show_pickup_message(text: String) -> void:
+	pickup_label.text = text
+	pickup_label.modulate.a = 1.0
+	create_tween().tween_property(pickup_label, "modulate:a", 0.0, 1.5).set_delay(0.5)
 
 func _shot_feedback() -> void:
 	shot_sound.pitch_scale = randf_range(0.9, 1.1)

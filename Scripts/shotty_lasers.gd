@@ -1,7 +1,7 @@
 extends Node3D
 
-@onready var left: Node3D = $LaserLeft
-@onready var right: Node = $LaserRight
+@onready var left: Node3D = $GunMesh/LaserLeft
+@onready var right: Node = $GunMesh/LaserRight
 
 func set_spread(degrees: float) -> void:
 	left.rotation_degrees.y = degrees

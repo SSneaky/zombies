@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dx42k175idhk5"]
+
+[ext_resource type="Script" uid="uid://bhvbrn8ynow1u" path="res://Scripts/random_pickup.gd" id="1_85hmm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_74n7r"]
+radius = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nrxls"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.18431373, 0, 1)
+emission_energy_multiplier = 2.17
+
+[sub_resource type="BoxMesh" id="BoxMesh_74n7r"]
+material = SubResource("StandardMaterial3D_nrxls")
+size = Vector3(1, 0.42089844, 1)
+
+[node name="Area3D" type="Area3D" unique_id=1989617498]
+script = ExtResource("1_85hmm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=774049648]
+shape = SubResource("SphereShape3D_74n7r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=119382359]
+transform = Transform3D(-9.960725e-09, -1.1713995, 0, 0.22787482, -5.1203497e-08, 0, 0, 0, 1, 4.677809e-09, 0.1086178, 0)
+mesh = SubResource("BoxMesh_74n7r")

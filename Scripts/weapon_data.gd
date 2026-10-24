@@ -9,6 +9,9 @@ extends Resource
 @export var spread_degrees: float = 0.0
 @export var max_range: float = 100.0
 @export var mag_size: int = 12
+@export var starting_reserve: int = 24
+@export var max_reserve: int = 120
+@export var ammo_type: String = "9mm"
 @export var reload_time: float = 1.5
 @export var recoil_kick: float = 0.06
 @export var model_scene: PackedScene
