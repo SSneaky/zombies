@@ -88,6 +88,7 @@ unique_name_in_owner = true
 transform = Transform3D(-0.06686908, 0, 0.9977618, 0, 1, 0, -0.9977618, 0, -0.06686908, 6.2684994, 1.5607417, 0)
 script = ExtResource("1_1enmr")
 weapons = Array[ExtResource("2_aj7ea")]([ExtResource("3_1enmr"), ExtResource("4_aj7ea"), ExtResource("5_6l3rs")])
+third_person_dist = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player" unique_id=1359214587]
 mesh = SubResource("CapsuleMesh_4xowi")
@@ -95,21 +96,31 @@ mesh = SubResource("CapsuleMesh_4xowi")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player" unique_id=1039112174]
 shape = SubResource("CapsuleShape3D_a202f")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="player" unique_id=1155917616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.71868134, 0)
+light_energy = 0.01
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 10.0
+omni_range = 13.774828
+
 [node name="neck" type="Node3D" parent="player" unique_id=1591808264]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.571, 0)
 
-[node name="POV" type="Camera3D" parent="player/neck" unique_id=1179686257]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8626451e-09, 0.08741486, -0.053569883)
-rotation_order = 0
-current = true
-
-[node name="RayCast3D" type="RayCast3D" parent="player/neck/POV" unique_id=1869427275]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.3711392e-08, 0, -0.00041484833, -0.00043010712)
+[node name="RayCast3D" type="RayCast3D" parent="player/neck" unique_id=1869427275]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.37114e-08, 5.9604645e-08, 0.08699989, -0.0539999)
 target_position = Vector3(0, 10, 0)
 
-[node name="3rdPerson" type="Camera3D" parent="player/neck" unique_id=1105508270]
-transform = Transform3D(1, 0, 0, 0, 0.94195485, 0.33573943, 0, -0.33573943, 0.94195485, 1.3387762e-09, 1.2212585, 2.0318382)
+[node name="SpringArm3D" type="SpringArm3D" parent="player/neck" unique_id=1142709174]
+spring_length = 0.0
+margin = 0.5
+
+[node name="POV" type="Camera3D" parent="player/neck/SpringArm3D" unique_id=1179686257]
 rotation_order = 0
+current = true
 
 [node name="GunHolder" type="Node3D" parent="player/neck" unique_id=76071365]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6412536, -0.38358498, -0.47133014)
@@ -227,16 +238,6 @@ stream = ExtResource("8_4cwgp")
 
 [node name="ReloadSound" type="AudioStreamPlayer" parent="player" unique_id=1021940045]
 stream = ExtResource("9_aj7ea")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="player" unique_id=1155917616]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.71868134, 0)
-light_energy = 0.01
-light_indirect_energy = 0.0
-light_volumetric_fog_energy = 0.0
-light_specular = 0.0
-distance_fade_enabled = true
-distance_fade_begin = 10.0
-omni_range = 13.774828
 
 [node name="ZombieSpawner" type="Node3D" parent="." unique_id=907975378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0191898, -0.9519602, -1.4252374)

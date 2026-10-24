@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cx1kci7ai0omd" path="res://Scripts/shotty_lasers.gd" id="1_nail3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_74n7r"]
-size = Vector3(1, 2.9556885, 1.3739014)
+size = Vector3(1, 2.9556885, 1.9066772)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lw3ka"]
 size = Vector3(0.01, 0.01, 8)
@@ -20,7 +20,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 script = ExtResource("1_nail3")
 
 [node name="GunMesh" type="MeshInstance3D" parent="." unique_id=1418700747]
-transform = Transform3D(0.19458458, 0, 0, 0, 0.16253527, 0, 0, 0, 0.5103779, -0.0014368333, 0, -5.9008726e-05)
+transform = Transform3D(0.19458458, 0, 0, 0, 0.16253527, 0, 0, 0, 0.5103779, -0.0014368333, 0, -0.13601752)
 mesh = SubResource("BoxMesh_74n7r")
 
 [node name="LaserLeft" type="Node3D" parent="." unique_id=1646223513]

@@ -6,7 +6,12 @@ const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 6.0
 const MOUSE_SENS:float = 0.01
 
+
 @export var weapons: Array[WeaponData] = []
+@export var third_person: bool = false
+@export var third_person_dist: float = 3.0
+@export var third_person_shoulder: float = 0.7
+@export var third_person_height: float = 0.4
 
 var current_index: int = 0
 var current: WeaponData
@@ -16,6 +21,7 @@ var fire_cooldown_left: float = 0.0
 var last_pos: Vector3
 var kills: int = 0
 
+
 @onready var gun_holder: Node3D = $neck/GunHolder
 @onready var model_slot : Node3D = $neck/GunHolder/ModelSlot
 
@@ -23,8 +29,10 @@ var kills: int = 0
 @onready var neck: Node3D = $neck
 @onready var health: Health = $Health
 @onready var health_bar: ProgressBar = $HUD/HealthBar
-@onready var camera: Camera3D = $neck/POV
-@onready var ray: RayCast3D = $neck/POV/RayCast3D
+@onready var spring_arm: SpringArm3D = $neck/SpringArm3D
+@onready var camera: Camera3D = $neck/SpringArm3D/POV
+@onready var body_mesh: MeshInstance3D = $MeshInstance3D
+@onready var ray: RayCast3D = $neck/RayCast3D
 @onready var ammo_label: Label = $HUD/AmmoLabel
 @onready var muzzle_light: OmniLight3D = $neck/GunHolder/MuzzleFlash
 @onready var gun_rest_pos: Vector3 = gun_holder.position
@@ -37,11 +45,15 @@ var kills: int = 0
 
 
 
+
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	health.health_changed.connect(_on_health_changed)
 	health.died.connect(_on_died)
 	_on_health_changed(health.current_health, health.max_health)
+	spring_arm.add_excluded_object(get_rid())
+	body_mesh.visible = false
 	for w in weapons:
 		ammo.append(w.mag_size)
 	_equip(0)
@@ -76,6 +88,16 @@ func _input(event: InputEvent) -> void:
 		var action := "weapon_%d" % (i+1)
 		if InputMap.has_action(action) and event.is_action_pressed(action):
 			_equip(i)
+	if event.is_action_pressed("toggle_view"):
+		_toggle_view()
+
+func _toggle_view() -> void:
+	third_person = not third_person
+	body_mesh.visible = third_person
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(spring_arm, "spring_length", third_person_dist if third_person else 0.0, 0.25)
+	tween.tween_property(camera, "h_offset", third_person_shoulder if third_person else 0.0, 0.25)
+	tween.tween_property(camera, "v_offset", third_person_height if third_person else 0.0, 0.25)
 
 func _equip(index: int) -> void:
 	if reloading or index == current_index and current != null:

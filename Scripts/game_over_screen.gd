@@ -4,6 +4,7 @@ extends Control
 @onready var kills_label: Label = $CenterContainer/VBoxContainer/FinalKillsLabel
 @onready var restart_button: Button = $CenterContainer/VBoxContainer/RestartButton
 @onready var quit_button: Button = $CenterContainer/VBoxContainer/QuitButton
+@onready var crosshair: Control = $"../Control"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +18,7 @@ func show_screen(kills: int) -> void:
 	show()
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	crosshair.visible = false
 
 func _on_restart_pressed() -> void:
 	get_tree().paused = false

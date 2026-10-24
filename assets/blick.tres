@@ -10,7 +10,6 @@
 script = ExtResource("1_rtdlw")
 damage = 20
 fire_cooldown = 0.2
-automatic = true
 spread_degrees = 3.5
 model_scene = ExtResource("2_60y4k")
 shot_sound = ExtResource("5_eb16o")

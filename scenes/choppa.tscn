@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bqq12jsnmte5j"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_74n7r"]
-size = Vector3(1, 2.9556885, 1.3739014)
+size = Vector3(1, 2.9556885, 3.3168335)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lw3ka"]
 size = Vector3(0.01, 0.01, 8)
@@ -16,7 +16,7 @@ emission_energy_multiplier = 10.19
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="GunMesh" type="MeshInstance3D" parent="." unique_id=1418700747]
-transform = Transform3D(0.11610974, 0, 0, 0, 0.08790233, 0, 0, 0, 0.5103779, 0, -0.085954785, 0.095415495)
+transform = Transform3D(0.11610974, 0, 0, 0, 0.08790233, 0, 0, 0, 0.5103779, 0, -0.085954785, -0.4003993)
 mesh = SubResource("BoxMesh_74n7r")
 
 [node name="GunLaser" type="Node3D" parent="." unique_id=1646223513]
@@ -30,7 +30,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_08asl")
 [node name="FlashLight" type="SpotLight3D" parent="." unique_id=1285765866]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.3904355e-08, -0.10868851, 0.4303391)
 light_color = Color(0.7956083, 0.9364061, 0.9970228, 1)
-light_energy = 3.215
+light_energy = 13.191
 light_size = 0.566
 shadow_enabled = true
 spot_range = 47.293633
