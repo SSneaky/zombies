@@ -40,6 +40,7 @@ var kills: int = 0
 @onready var shot_sound: AudioStreamPlayer = $ShotSound
 @onready var empty_sound: AudioStreamPlayer = $EmptySound
 @onready var reload_sound: AudioStreamPlayer = $ReloadSound
+@onready var pickup_sound: AudioStreamPlayer = $PickupSound
 @onready var kills_label: Label = $HUD/KillsLabel
 @onready var game_over_screen: GameOverScreen = $HUD/GameOverScreen
 @onready var crosshair: Control = $HUD/Control
@@ -169,7 +170,7 @@ func add_ammo(ammo_type: String, amount: int) -> bool:
 	if have >= cap:
 		return false
 	reserve[ammo_type] = mini(have + amount, cap)
-	reload_sound.play()
+	pickup_sound.play()
 	_update_ammo_label()
 	return true
 

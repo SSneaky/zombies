@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://blf7ckkdggd6g" path="res://Scripts/crosshair.gd" id="9_6l3rs"]
 [ext_resource type="AudioStream" uid="uid://cqxprp7vjdby4" path="res://assets/xpmonster-toy-gun-reloading-amp-shooting-419582.mp3" id="9_aj7ea"]
 [ext_resource type="Script" uid="uid://mrit4d7kccj7" path="res://Scripts/zombie_spawner.gd" id="10_2u1at"]
+[ext_resource type="AudioStream" uid="uid://c2shicf0lge8" path="res://assets/ak_chamber.wav" id="13_2u1at"]
 [ext_resource type="PackedScene" uid="uid://b5hagdvhitign" path="res://scenes/opp.tscn" id="14_6l3rs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4xowi"]
@@ -98,7 +99,10 @@ unique_name_in_owner = true
 transform = Transform3D(-0.06686908, 0, 0.9977618, 0, 1, 0, -0.9977618, 0, -0.06686908, 6.2684994, 1.5607417, 0)
 script = ExtResource("1_1enmr")
 weapons = Array[ExtResource("2_aj7ea")]([ExtResource("3_1enmr"), ExtResource("4_aj7ea"), ExtResource("5_6l3rs")])
+third_person = null
 third_person_dist = 10.0
+third_person_shoulder = null
+third_person_height = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player" unique_id=1359214587]
 mesh = SubResource("CapsuleMesh_4xowi")
@@ -258,6 +262,9 @@ stream = ExtResource("8_4cwgp")
 
 [node name="ReloadSound" type="AudioStreamPlayer" parent="player" unique_id=1021940045]
 stream = ExtResource("9_aj7ea")
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="player" unique_id=303081354]
+stream = ExtResource("13_2u1at")
 
 [node name="ZombieSpawner" type="Node3D" parent="." unique_id=907975378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0191898, -0.9519602, -1.4252374)
