@@ -37,7 +37,7 @@ func _start_wave() -> void:
 	remaining = to_spawn
 	wave_started.emit(wave)
 	remaining_changed.emit(remaining)
-	timer.start(spawn_interval) 
+	timer.start(spawn_interval)
 
 func _spawn_zombie() -> void:
 	if to_spawn <= 0:

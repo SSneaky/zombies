@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://biqxcggslxlow" path="res://Scripts/game_over_screen.gd" id="6_6l3rs"]
 [ext_resource type="AudioStream" uid="uid://c5fkfabpl0ee6" path="res://assets/universfield-gunshot-352466.mp3" id="7_1enmr"]
 [ext_resource type="AudioStream" uid="uid://bhgbu4c2dccy2" path="res://assets/freesound_community-empty-gun-shot-6209.mp3" id="8_4cwgp"]
+[ext_resource type="Script" uid="uid://bsohja5ruflm8" path="res://scenes/gun.gd" id="8_dn2ro"]
 [ext_resource type="Script" uid="uid://blf7ckkdggd6g" path="res://Scripts/crosshair.gd" id="9_6l3rs"]
 [ext_resource type="AudioStream" uid="uid://cqxprp7vjdby4" path="res://assets/xpmonster-toy-gun-reloading-amp-shooting-419582.mp3" id="9_aj7ea"]
 [ext_resource type="Script" uid="uid://mrit4d7kccj7" path="res://Scripts/zombie_spawner.gd" id="10_2u1at"]
@@ -91,6 +92,120 @@ albedo_color = Color(0.972549, 1, 0.70980394, 1)
 
 [node name="Node3D" type="Node3D" unique_id=358296309]
 
+[node name="UI" type="Control" parent="." unique_id=475206644]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameOverScreen" type="Control" parent="UI" unique_id=1819752827]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_6l3rs")
+
+[node name="ColorRect" type="ColorRect" parent="UI/GameOverScreen" unique_id=24458731]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.050708726, 0, 0, 0.702)
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/GameOverScreen" unique_id=278635361]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverScreen/CenterContainer" unique_id=104266858]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="UI/GameOverScreen/CenterContainer/VBoxContainer" unique_id=1671765085]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "YOU FUCKING SUCK"
+
+[node name="FinalKillsLabel" type="Label" parent="UI/GameOverScreen/CenterContainer/VBoxContainer" unique_id=1425720205]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "KILLS: 0"
+
+[node name="RestartButton" type="Button" parent="UI/GameOverScreen/CenterContainer/VBoxContainer" unique_id=1763186590]
+layout_mode = 2
+text = "RUN IT BACK?"
+
+[node name="QuitButton" type="Button" parent="UI/GameOverScreen/CenterContainer/VBoxContainer" unique_id=1300823898]
+layout_mode = 2
+text = "OR JUST END IT ON A LOSS"
+
+[node name="WaveLabel" type="Label" parent="UI" unique_id=911534391]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 536.0
+offset_top = 70.0
+offset_right = 576.0
+offset_bottom = 93.0
+grow_horizontal = 2
+
+[node name="KillsLabel" type="Label" parent="UI" unique_id=627184974]
+layout_mode = 0
+offset_top = 602.0
+offset_right = 50.0
+offset_bottom = 625.0
+text = "Kills: 0"
+
+[node name="PlayerHud" type="CanvasLayer" parent="UI" unique_id=1083705263]
+
+[node name="HealthBar" type="ProgressBar" parent="UI/PlayerHud" unique_id=1102422874]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -450.0
+offset_top = 20.0
+offset_right = 450.0
+offset_bottom = 47.0
+grow_horizontal = 2
+
+[node name="AmmoLabel" type="Label" parent="UI/PlayerHud" unique_id=525027840]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 1.0
+grow_vertical = 0
+
+[node name="PickupLabel" type="Label" parent="UI/PlayerHud" unique_id=693045497]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 119.0
+offset_top = -11.0
+offset_right = 159.0
+offset_bottom = 12.0
+grow_vertical = 2
+
+[node name="Crosshair" type="Control" parent="UI/PlayerHud" unique_id=1146279861]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_6l3rs")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1223653238]
 environment = SubResource("Environment_noarx")
 
@@ -133,12 +248,14 @@ margin = 0.5
 rotation_order = 0
 current = true
 
-[node name="GunHolder" type="Node3D" parent="player/neck" unique_id=76071365]
+[node name="Gun" type="Node3D" parent="player/neck" unique_id=76071365]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6412536, -0.38358498, -0.47133014)
+script = ExtResource("8_dn2ro")
+weapons = Array[ExtResource("2_aj7ea")]([ExtResource("3_1enmr"), ExtResource("5_6l3rs"), ExtResource("4_aj7ea")])
 
-[node name="ModelSlot" type="Node3D" parent="player/neck/GunHolder" unique_id=2061162057]
+[node name="ModelSlot" type="Node3D" parent="player/neck/Gun" unique_id=2061162057]
 
-[node name="MuzzleFlash" type="OmniLight3D" parent="player/neck/GunHolder" unique_id=813987375]
+[node name="MuzzleFlash" type="OmniLight3D" parent="player/neck/Gun" unique_id=813987375]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025861308, 0.06434417, -0.47563362)
 visible = false
 light_color = Color(1, 0.8666667, 0.23137255, 1)
@@ -148,118 +265,12 @@ shadow_opacity = 0.87
 shadow_blur = 7.854
 omni_range = 18.294
 
-[node name="GunMesh" parent="player/neck/GunHolder" unique_id=2088814401 instance=ExtResource("4_6l3rs")]
+[node name="GunMesh" parent="player/neck/Gun" unique_id=2088814401 instance=ExtResource("4_6l3rs")]
 visible = false
 
 [node name="Health" type="Node" parent="player" unique_id=1808181859]
 script = ExtResource("5_umdqk")
 metadata/_custom_type_script = "uid://bhreaj1xputgv"
-
-[node name="HUD" type="CanvasLayer" parent="player" unique_id=1083705263]
-
-[node name="HealthBar" type="ProgressBar" parent="player/HUD" unique_id=1102422874]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -450.0
-offset_top = 20.0
-offset_right = 450.0
-offset_bottom = 47.0
-grow_horizontal = 2
-
-[node name="AmmoLabel" type="Label" parent="player/HUD" unique_id=525027840]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 1.0
-grow_vertical = 0
-
-[node name="KillsLabel" type="Label" parent="player/HUD" unique_id=627184974]
-offset_top = 602.0
-offset_right = 50.0
-offset_bottom = 625.0
-text = "Kills: 0"
-
-[node name="PickupLabel" type="Label" parent="player/HUD" unique_id=693045497]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 119.0
-offset_top = -11.0
-offset_right = 159.0
-offset_bottom = 12.0
-grow_vertical = 2
-
-[node name="WaveLabel" type="Label" parent="player/HUD" unique_id=911534391]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = 70.0
-offset_right = 20.0
-offset_bottom = 93.0
-grow_horizontal = 2
-
-[node name="GameOverScreen" type="Control" parent="player/HUD" unique_id=1819752827]
-process_mode = 3
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_6l3rs")
-
-[node name="ColorRect" type="ColorRect" parent="player/HUD/GameOverScreen" unique_id=24458731]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.050708726, 0, 0, 0.702)
-
-[node name="CenterContainer" type="CenterContainer" parent="player/HUD/GameOverScreen" unique_id=278635361]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="player/HUD/GameOverScreen/CenterContainer" unique_id=104266858]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="TitleLabel" type="Label" parent="player/HUD/GameOverScreen/CenterContainer/VBoxContainer" unique_id=1671765085]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "YOU FUCKING SUCK"
-
-[node name="FinalKillsLabel" type="Label" parent="player/HUD/GameOverScreen/CenterContainer/VBoxContainer" unique_id=1425720205]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "KILLS: 0"
-
-[node name="RestartButton" type="Button" parent="player/HUD/GameOverScreen/CenterContainer/VBoxContainer" unique_id=1763186590]
-layout_mode = 2
-text = "RUN IT BACK?"
-
-[node name="QuitButton" type="Button" parent="player/HUD/GameOverScreen/CenterContainer/VBoxContainer" unique_id=1300823898]
-layout_mode = 2
-text = "OR JUST END IT ON A LOSS"
-
-[node name="Control" type="Control" parent="player/HUD" unique_id=1146279861]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("9_6l3rs")
 
 [node name="ShotSound" type="AudioStreamPlayer" parent="player" unique_id=632472034]
 stream = ExtResource("7_1enmr")

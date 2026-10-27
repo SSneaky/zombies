@@ -4,8 +4,7 @@ extends Control
 @onready var kills_label: Label = $CenterContainer/VBoxContainer/FinalKillsLabel
 @onready var restart_button: Button = $CenterContainer/VBoxContainer/RestartButton
 @onready var quit_button: Button = $CenterContainer/VBoxContainer/QuitButton
-@onready var crosshair: Control = $"../Control"
-
+@onready var crosshair: Control = $"../PlayerHud/Crosshair"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
