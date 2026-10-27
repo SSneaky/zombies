@@ -17,7 +17,7 @@ extends Resource
 @export var model_scene: PackedScene
 @export var shot_sound: AudioStream
 @export var reload_sound: AudioStream
-@export var empty_sound: AudioStream
+@export var empty_sound: AudioStream 
 
 
 # Called when the node enters the scene tree for the first time.

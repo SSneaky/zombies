@@ -21,6 +21,7 @@ var reloading: bool = false
 var fire_cooldown_left: float = 0.0
 var last_pos: Vector3
 var kills: int = 0
+var wave_num: int = 0
 
 
 @onready var gun_holder: Node3D = $neck/GunHolder
@@ -45,6 +46,8 @@ var kills: int = 0
 @onready var game_over_screen: GameOverScreen = $HUD/GameOverScreen
 @onready var crosshair: Control = $HUD/Control
 @onready var pickup_label: Label = $HUD/PickupLabel
+@onready var wave_label: Label = $HUD/WaveLabel
+
 
 
 
@@ -64,6 +67,22 @@ func _ready() -> void:
 			reserve[w.ammo_type] = w.starting_reserve
 	_equip(0)
 	_update_kills_label()
+	var spawner := get_tree().get_first_node_in_group("spawner")
+	if spawner:
+		spawner.wave_started.connect(_on_wave_started)
+		spawner.remaining_changed.connect(_on_remaining_changed)
+		spawner.break_tick.connect(_on_break_tick)
+
+func _on_wave_started(wave: int) -> void:
+	wave_num = wave
+	wave_label.text = "Wave %d" % wave
+
+func _on_remaining_changed(remaining: int) -> void:
+	wave_label.text = "Wave %d - %d left" % [wave_num, remaining]
+
+func _on_break_tick(seconds: int) -> void:
+	wave_label.text = "Wave %d in %d" % [wave_num + 1, seconds]
+
 
 
 func _on_health_changed(ahora: int, maximum: int) -> void:
