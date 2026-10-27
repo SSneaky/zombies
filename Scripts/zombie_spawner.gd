@@ -34,7 +34,9 @@ func _start_break() -> void:
 func _start_wave() -> void:
 	wave += 1
 	to_spawn = first_wave_size + (wave - 1) * wave_growth
-	wave_started.emit(remaining)
+	remaining = to_spawn
+	wave_started.emit(wave)
+	remaining_changed.emit(remaining)
 	timer.start(spawn_interval) 
 
 func _spawn_zombie() -> void:

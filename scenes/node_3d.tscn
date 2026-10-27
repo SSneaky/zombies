@@ -273,28 +273,28 @@ stream = ExtResource("9_aj7ea")
 [node name="PickupSound" type="AudioStreamPlayer" parent="player" unique_id=303081354]
 stream = ExtResource("13_2u1at")
 
-[node name="ZombieSpawner" type="Node3D" parent="." unique_id=907975378 groups=["spawner"]]
+[node name="ZombieManager" type="Node3D" parent="." unique_id=907975378 groups=["spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0191898, -0.9519602, -1.4252374)
 script = ExtResource("10_2u1at")
 zombie_scene = ExtResource("14_6l3rs")
 break_seconds = 3
 
-[node name="Marker3D" type="Marker3D" parent="ZombieSpawner" unique_id=1526393998]
+[node name="Marker3D" type="Marker3D" parent="ZombieManager" unique_id=1526393998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.412899, 7.3994694, 2.3259697)
 
-[node name="Marker3D2" type="Marker3D" parent="ZombieSpawner" unique_id=1211969062]
+[node name="Marker3D2" type="Marker3D" parent="ZombieManager" unique_id=1211969062]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.281368, 15.982236, 32.671265)
 
-[node name="Marker3D3" type="Marker3D" parent="ZombieSpawner" unique_id=2072096948]
+[node name="Marker3D3" type="Marker3D" parent="ZombieManager" unique_id=2072096948]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.357177, 7.2820387, 9.951702)
 
-[node name="Marker3D4" type="Marker3D" parent="ZombieSpawner" unique_id=623219147]
+[node name="Marker3D4" type="Marker3D" parent="ZombieManager" unique_id=623219147]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.07884, 1.327889, 36.09782)
 
-[node name="Marker3D5" type="Marker3D" parent="ZombieSpawner" unique_id=1072296499]
+[node name="Marker3D5" type="Marker3D" parent="ZombieManager" unique_id=1072296499]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.158693, 1.037827, -28.107153)
 
-[node name="Timer" type="Timer" parent="ZombieSpawner" unique_id=1710540815]
+[node name="Timer" type="Timer" parent="ZombieManager" unique_id=1710540815]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1924267470]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.009853363, 0, 0.0038833618)
