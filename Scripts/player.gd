@@ -104,6 +104,12 @@ func _toggle_view() -> void:
 	tween.tween_property(camera, "h_offset", third_person_shoulder if third_person else 0.0, 0.25)
 	tween.tween_property(camera, "v_offset", third_person_height if third_person else 0.0, 0.25)
 
+func add_ammo(ammo_type: String, amount: int) -> bool:
+	return gun.add_ammo(ammo_type, amount)
+
+func show_pickup_message(text: String) -> void:
+	return gun.show_pickup_message(text)
+
 
 func add_kill() -> void:
 	kills += 1

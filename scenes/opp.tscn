@@ -20,11 +20,10 @@ radius = 0.7045378
 
 [node name="opp" type="CharacterBody3D" unique_id=378033695 groups=["opps"]]
 script = ExtResource("1_8182q")
-damage = 30
+damage = 12
 attack_cooldown = 0.25
 speed = 4.5
 drops = Array[PackedScene]([ExtResource("2_2h8y8")])
-drop_chance = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=379662958]
 mesh = SubResource("CapsuleMesh_a0tk4")

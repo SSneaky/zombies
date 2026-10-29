@@ -94,9 +94,11 @@ albedo_color = Color(0.972549, 1, 0.70980394, 1)
 
 [node name="UI" type="Control" parent="." unique_id=475206644]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="GameOverScreen" type="Control" parent="UI" unique_id=1819752827]
 process_mode = 3
@@ -152,9 +154,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 536.0
+offset_left = -20.0
 offset_top = 70.0
-offset_right = 576.0
+offset_right = 20.0
 offset_bottom = 93.0
 grow_horizontal = 2
 
@@ -288,6 +290,10 @@ stream = ExtResource("13_2u1at")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0191898, -0.9519602, -1.4252374)
 script = ExtResource("10_2u1at")
 zombie_scene = ExtResource("14_6l3rs")
+max_zombies = 50
+first_wave_size = 10
+wave_growth = 10
+spawn_interval = 0.5
 break_seconds = 3
 
 [node name="Marker3D" type="Marker3D" parent="ZombieManager" unique_id=1526393998]

@@ -1,5 +1,7 @@
 extends Area3D
 
+@onready var gun: Node3D = $player/neck/Gun
+
 @export var ammo_type: String = "9mm"
 @export var amount: int = 12
 
@@ -8,7 +10,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	for body in get_overlapping_bodies():
-		if body.is_in_group("player") and body.has_method("add_ammo"):
+		if body.is_in_group("player") and gun.has_method("add_ammo"):
 			if body.add_ammo(ammo_type, amount):
 				queue_free()
 				return
