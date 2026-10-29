@@ -1,0 +1,190 @@
+[gd_scene format=3 uid="uid://4ya3j5x8npup"]
+
+[ext_resource type="Script" uid="uid://blf7ckkdggd6g" path="res://Scripts/crosshair.gd" id="1_5en4g"]
+[ext_resource type="Script" uid="uid://du6e2t7d22rg3" path="res://Scripts/pause_menu.gd" id="1_dj8aq"]
+[ext_resource type="Script" uid="uid://biqxcggslxlow" path="res://Scripts/game_over_screen.gd" id="3_ua6yw"]
+
+[node name="Control" type="Control" unique_id=657239388 groups=["PauseMenu"]]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=736794565]
+
+[node name="PlayerHud" type="Control" parent="CanvasLayer" unique_id=1834318444]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/PlayerHud" unique_id=690425078]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -450.0
+offset_top = 20.0
+offset_right = 450.0
+offset_bottom = 47.0
+grow_horizontal = 2
+
+[node name="Crosshair" type="Control" parent="CanvasLayer/PlayerHud" unique_id=199809103]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5en4g")
+
+[node name="AmmoLabel" type="Label" parent="CanvasLayer/PlayerHud" unique_id=1783091256]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 1.0
+grow_vertical = 0
+
+[node name="PickupLabel" type="Label" parent="CanvasLayer/PlayerHud" unique_id=377121412]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 119.0
+offset_top = -11.0
+offset_right = 159.0
+offset_bottom = 12.0
+grow_vertical = 2
+
+[node name="KillsLabel" type="Label" parent="CanvasLayer/PlayerHud" unique_id=173964670]
+layout_mode = 0
+offset_top = 602.0
+offset_right = 50.0
+offset_bottom = 625.0
+text = "Kills: 0"
+
+[node name="WaveLabel" type="Label" parent="CanvasLayer/PlayerHud" unique_id=1401369478]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 70.0
+offset_right = 20.0
+offset_bottom = 93.0
+grow_horizontal = 2
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=1464076494 groups=["PauseMenu"]]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dj8aq")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PauseMenu" unique_id=1853425348]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.8784314)
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/PauseMenu" unique_id=564980934]
+layout_mode = 0
+offset_left = 538.0
+offset_top = 80.0
+offset_right = 614.0
+offset_bottom = 103.0
+size_flags_horizontal = 4
+text = "PAUSED - "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu" unique_id=1289230625]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = -86.0
+offset_right = 106.5
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer" unique_id=860287921]
+layout_mode = 2
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer" unique_id=1406296599]
+layout_mode = 2
+text = "Restart"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer" unique_id=885221022]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer" unique_id=35204231]
+layout_mode = 2
+text = "Im outta here"
+
+[node name="GameOverScreen" type="Control" parent="CanvasLayer" unique_id=1592423143]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_ua6yw")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/GameOverScreen" unique_id=1146232925]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.050708726, 0, 0, 0.702)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/GameOverScreen" unique_id=1786360404]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverScreen/CenterContainer" unique_id=2622624]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/GameOverScreen/CenterContainer/VBoxContainer" unique_id=1705030600]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "YOU FUCKING SUCK"
+
+[node name="FinalKillsLabel" type="Label" parent="CanvasLayer/GameOverScreen/CenterContainer/VBoxContainer" unique_id=283872864]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "KILLS: 0"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/GameOverScreen/CenterContainer/VBoxContainer" unique_id=515619546]
+layout_mode = 2
+text = "RUN IT BACK?"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/GameOverScreen/CenterContainer/VBoxContainer" unique_id=295511134]
+layout_mode = 2
+text = "OR JUST END IT ON A LOSS"

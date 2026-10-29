@@ -27,14 +27,14 @@ var wave_num: int = 0
 @onready var gun: Node3D = $neck/Gun
 @onready var neck: Node3D = $neck
 @onready var health: Health = $Health
-@onready var health_bar: ProgressBar = $"../UI/PlayerHud/HealthBar"
+@onready var health_bar: ProgressBar = $"../WorkingUI/PlayerHud/HealthBar"
 @onready var spring_arm: SpringArm3D = $neck/SpringArm3D
 @onready var camera: Camera3D = $neck/SpringArm3D/POV
 @onready var body_mesh: MeshInstance3D = $MeshInstance3D
-@onready var kills_label: Label = $"../UI/KillsLabel"
-@onready var game_over_screen: GameOverScreen = $"../UI/GameOverScreen"
-@onready var wave_label: Label = $"../UI/WaveLabel"
-
+@onready var kills_label: Label = $"../WorkingUI/PlayerHud/KillsLabel"
+@onready var game_over_screen: GameOverScreen = $"../WorkingUI/GameOverScreen"
+@onready var wave_label: Label = $"../WorkingUI/PlayerHud/WaveLabel"
+@onready var pause_menu: Control = UI.get_node("CanvasLayer/PauseMenu")
 
 
 
@@ -74,8 +74,10 @@ func _on_died() -> void:
 
 #mouse cursor logic
 func _input(event: InputEvent) -> void:
-	if Input.is_action_pressed("exit") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+#	if Input.is_action_pressed("exit") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+#		UI.get_node("CanvasLayer/PauseMenu").show_screen()
+#	elif Input.is_action_pressed("exit") and pause_menu.paused == true:
+#		pause_menu._on_resume_pressed()
 
 	if event is InputEventMouseButton and event.pressed:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

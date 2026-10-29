@@ -56,7 +56,7 @@ func _spawn_zombie() -> void:
 	zombie.position = world.to_local(point.global_position)
 	
 	var zombie_health: Health = zombie.get_node("Health")
-	zombie_health.max_health = int(zombie_health.max_health *(1.0 + health_growth * (wave - 1)))
+	zombie_health.max_health = int(zombie_health.max_health * (1.0 + health_growth * (wave - 1)))
 	zombie_health.died.connect(_on_zombie_died)
 	
 	world.add_child(zombie)

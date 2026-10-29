@@ -9,6 +9,9 @@ extends Control
 		gap = value
 		queue_redraw()
 
+func _ready() -> void:
+	#UI.paused.connect(hide)
+	pass
 func _draw() -> void:
 	draw_line(Vector2(-gap - length, 0), Vector2(-gap, 0), color, thickness)
 	draw_line(Vector2(gap, 0), Vector2(gap + length, 0), color, thickness)
