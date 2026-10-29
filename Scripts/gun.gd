@@ -61,12 +61,7 @@ func _equip(index: int) -> void:
 	ray.target_position = Vector3(0, 0, -current.max_range)
 	crosshair.gap = 5.0 + current.spread_degrees * 4.0
 	_update_ammo_label()
-	if current.model_scene:
-		var model := current.model_scene.instantiate()
-		model_slot.add_child(model)
-		if model.has_method('set_spread'):
-			model.set_spread(current.spread_degrees)
-		crosshair.gap = 5.0 + current.spread_degrees * 4
+
 
 func _shoot() -> void:
 	ammo[current_index] -= 1
@@ -132,8 +127,8 @@ func _shot_feedback() -> void:
 	shot_sound.play()
 	
 	var tween := create_tween()
-	tween.tween_property($Gun, "position", gun_rest_pos + Vector3(0, current.recoil_kick * 0.5,current.recoil_kick), 0.04)
-	tween.tween_property($Gun, "position", gun_rest_pos, 0.12)
+	tween.tween_property(self, "position", gun_rest_pos + Vector3(0, current.recoil_kick * 0.5,current.recoil_kick), 0.04)
+	tween.tween_property(self, "position", gun_rest_pos, 0.12)
 	
 	muzzle_light.visible = true
 	await get_tree().create_timer(0.05).timeout

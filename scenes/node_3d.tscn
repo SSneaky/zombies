@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://biqxcggslxlow" path="res://Scripts/game_over_screen.gd" id="6_6l3rs"]
 [ext_resource type="AudioStream" uid="uid://c5fkfabpl0ee6" path="res://assets/universfield-gunshot-352466.mp3" id="7_1enmr"]
 [ext_resource type="AudioStream" uid="uid://bhgbu4c2dccy2" path="res://assets/freesound_community-empty-gun-shot-6209.mp3" id="8_4cwgp"]
-[ext_resource type="Script" uid="uid://bsohja5ruflm8" path="res://scenes/gun.gd" id="8_dn2ro"]
+[ext_resource type="Script" uid="uid://bsohja5ruflm8" path="res://Scripts/gun.gd" id="8_dn2ro"]
 [ext_resource type="Script" uid="uid://blf7ckkdggd6g" path="res://Scripts/crosshair.gd" id="9_6l3rs"]
 [ext_resource type="AudioStream" uid="uid://cqxprp7vjdby4" path="res://assets/xpmonster-toy-gun-reloading-amp-shooting-419582.mp3" id="9_aj7ea"]
 [ext_resource type="Script" uid="uid://mrit4d7kccj7" path="res://Scripts/zombie_spawner.gd" id="10_2u1at"]

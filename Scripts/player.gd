@@ -25,26 +25,14 @@ var wave_num: int = 0
 
 
 @onready var gun: Node3D = $neck/Gun
-@onready var model_slot : Node3D = $neck/Gun/ModelSlot
-
-
 @onready var neck: Node3D = $neck
 @onready var health: Health = $Health
 @onready var health_bar: ProgressBar = $"../UI/PlayerHud/HealthBar"
 @onready var spring_arm: SpringArm3D = $neck/SpringArm3D
 @onready var camera: Camera3D = $neck/SpringArm3D/POV
 @onready var body_mesh: MeshInstance3D = $MeshInstance3D
-@onready var ray: RayCast3D = $neck/RayCast3D
-@onready var ammo_label: Label = $"../UI/PlayerHud/AmmoLabel"
-@onready var muzzle_light: OmniLight3D = $neck/Gun/MuzzleFlash
-@onready var gun_rest_pos: Vector3 = gun.position
-@onready var shot_sound: AudioStreamPlayer = $ShotSound
-@onready var empty_sound: AudioStreamPlayer = $EmptySound
-@onready var reload_sound: AudioStreamPlayer = $ReloadSound
-@onready var pickup_sound: AudioStreamPlayer = $PickupSound
 @onready var kills_label: Label = $"../UI/KillsLabel"
 @onready var game_over_screen: GameOverScreen = $"../UI/GameOverScreen"
-@onready var pickup_label: Label = $"../UI/PlayerHud/PickupLabel"
 @onready var wave_label: Label = $"../UI/WaveLabel"
 
 
@@ -117,43 +105,6 @@ func _toggle_view() -> void:
 	tween.tween_property(camera, "v_offset", third_person_height if third_person else 0.0, 0.25)
 
 
-
-func add_ammo(ammo_type: String, amount: int) -> bool:
-	var cap:= _max_reserve_for(ammo_type)
-	var have: int = reserve.get(ammo_type, 0)
-	
-	if have >= cap:
-		return false
-	reserve[ammo_type] = mini(have + amount, cap)
-	pickup_sound.play()
-	gun._update_ammo_label()
-	return true
-
-func _max_reserve_for(ammo_type: String) -> int:
-	var most := 0
-	for w in weapons:
-		if w.ammo_type == ammo_type:
-			most = maxi(most, w.max_reserve)
-	return most
-
-
-func show_pickup_message(text: String) -> void:
-	pickup_label.text = text
-	pickup_label.modulate.a = 1.0
-	create_tween().tween_property(pickup_label, "modulate:a", 0.0, 1.5).set_delay(0.5)
-
-func _shot_feedback() -> void:
-	shot_sound.pitch_scale = randf_range(0.9, 1.1)
-	shot_sound.play()
-	
-	var tween := create_tween()
-	tween.tween_property(gun, "position", gun_rest_pos + Vector3(0, current.recoil_kick * 0.5,current.recoil_kick), 0.04)
-	tween.tween_property(gun, "position", gun_rest_pos, 0.12)
-	
-	muzzle_light.visible = true
-	await get_tree().create_timer(0.05).timeout
-	muzzle_light.visible = false
-
 func add_kill() -> void:
 	kills += 1
 	_update_kills_label()
@@ -164,14 +115,9 @@ func _physics_process(delta: float) -> void:
 #	if global_position.distance_to(last_pos) > 1.0:
 #		print('player jumped: ', last_pos, ' -> ', global_position, " at ", Time.get_ticks_msec(), " ms")
 	last_pos = global_position
-#gun logic
-	fire_cooldown_left -= delta
-	
 	
 	if Input.is_action_just_pressed('reload'):
 		gun._reload()
-	
-	
 # Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

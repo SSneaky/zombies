@@ -11,8 +11,8 @@ size = Vector3(0.01, 0.01, 8)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yx4t4"]
 transparency = 1
 emission_enabled = true
-emission = Color(0.78039217, 0.3882353, 0.15686275, 1)
-emission_energy_multiplier = 10.19
+emission = Color(1, 0.36778843, 0.3002166, 1)
+emission_energy_multiplier = 8.0
 disable_receive_shadows = true
 
 [node name="Node3D" type="Node3D" unique_id=1071684205]
