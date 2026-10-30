@@ -8,6 +8,7 @@ signal paused
 @onready var restart_button: Button = $VBoxContainer/RestartButton
 @onready var settings_button: Button = $VBoxContainer/SettingsButton
 @onready var quit_button: Button = $VBoxContainer/QuitButton
+@onready var death_screen: Control = $"../GameOverScreen"
 
 var map_name = null
 
@@ -18,8 +19,6 @@ func _ready() -> void:
 	restart_button.pressed.connect(_on_restart_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
-	if Input.is_action_just_pressed("exit") and self.visible == true:
-		_on_resume_pressed()
 
 func show_screen() -> void:
 	paused.emit()
@@ -48,9 +47,12 @@ func _on_quit_pressed() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("exit") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		UI.get_node("CanvasLayer/PauseMenu").show_screen()
-		get_viewport().set_input_as_handled()
-	elif event.is_action_pressed("exit") and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-		_on_resume_pressed()
-		get_viewport().set_input_as_handled()
+	if not death_screen.visible:
+		if event.is_action_pressed("exit") and not get_tree().paused:
+			show_screen()
+			get_viewport().set_input_as_handled()
+		elif event.is_action_pressed("exit") and get_tree().paused:
+			_on_resume_pressed()
+			get_viewport().set_input_as_handled()
+	else:
+		pass

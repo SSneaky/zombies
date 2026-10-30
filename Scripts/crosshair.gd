@@ -10,7 +10,7 @@ extends Control
 		queue_redraw()
 
 func _ready() -> void:
-	#UI.paused.connect(hide)
+	show()
 	pass
 func _draw() -> void:
 	draw_line(Vector2(-gap - length, 0), Vector2(-gap, 0), color, thickness)

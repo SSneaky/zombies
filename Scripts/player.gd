@@ -27,13 +27,13 @@ var wave_num: int = 0
 @onready var gun: Node3D = $neck/Gun
 @onready var neck: Node3D = $neck
 @onready var health: Health = $Health
-@onready var health_bar: ProgressBar = UI.get_node("$CanvasLayer/PlayerHud/HealthBar")
+@onready var health_bar: ProgressBar = UI.get_node("CanvasLayer/PlayerHud/HealthBar")
 @onready var spring_arm: SpringArm3D = $neck/SpringArm3D
 @onready var camera: Camera3D = $neck/SpringArm3D/POV
 @onready var body_mesh: MeshInstance3D = $MeshInstance3D
-@onready var kills_label: Label = UI.get_node("$CanvasLayer/PlayerHud/KillsLabel")
-@onready var game_over_screen: GameOverScreen = UI.get_node("$CanvasLayer/GameOverScreen")
-@onready var wave_label: Label = UI.get_node("$CanvasLayer/PlayerHud/WaveLabel")
+@onready var kills_label: Label = UI.get_node("CanvasLayer/PlayerHud/KillsLabel")
+@onready var game_over_screen: GameOverScreen = UI.get_node("CanvasLayer/GameOverScreen")
+@onready var wave_label: Label = UI.get_node("CanvasLayer/PlayerHud/WaveLabel")
 @onready var pause_menu: Control = UI.get_node("CanvasLayer/PauseMenu")
 
 
