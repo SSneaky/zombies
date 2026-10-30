@@ -25,7 +25,7 @@ func show_screen() -> void:
 	paused.emit()
 	map_name = get_tree().get_current_scene().name
 	print(map_name)
-	title_label.text = "PAUSED - "#%" % map_name
+	title_label.text = "PAUSED - " + map_name
 	show()
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

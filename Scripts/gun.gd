@@ -17,9 +17,9 @@ var fire_cooldown_left: float = 0.0
 @onready var empty_sound: AudioStreamPlayer = $"../../EmptySound"
 @onready var reload_sound: AudioStreamPlayer = $"../../ReloadSound"
 @onready var pickup_sound: AudioStreamPlayer = $"../../PickupSound"
-@onready var ammo_label: Label = $"../../../WorkingUI/PlayerHud/AmmoLabel"
-@onready var pickup_label: Label = $"../../../WorkingUI/PlayerHud/PickupLabel"
-@onready var crosshair: Control = $"../../../WorkingUI/PlayerHud/Crosshair"
+@onready var ammo_label: Label = UI.get_node("$CanvasLayer/PlayerHud/AmmoLabel")
+@onready var pickup_label: Label = UI.get_node("$CanvasLayer/PlayerHud/PickupLabel")
+@onready var crosshair: Control = UI.get_node("$CanvasLayer/PlayerHud/Crosshair")
 
 
 
