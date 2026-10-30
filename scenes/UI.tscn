@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://blf7ckkdggd6g" path="res://Scripts/crosshair.gd" id="1_5en4g"]
 [ext_resource type="Script" uid="uid://du6e2t7d22rg3" path="res://Scripts/pause_menu.gd" id="1_dj8aq"]
 [ext_resource type="Script" uid="uid://biqxcggslxlow" path="res://Scripts/game_over_screen.gd" id="3_ua6yw"]
+[ext_resource type="Script" uid="uid://btfhqw1won4wh" path="res://scenes/start_menu.gd" id="4_ua6yw"]
 
 [node name="Control" type="Control" unique_id=657239388 groups=["PauseMenu"]]
 process_mode = 3
@@ -16,6 +17,7 @@ grow_vertical = 2
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=736794565]
 
 [node name="PlayerHud" type="Control" parent="CanvasLayer" unique_id=1834318444]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,6 +88,7 @@ grow_horizontal = 2
 [node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=1464076494 groups=["PauseMenu"]]
 unique_name_in_owner = true
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -147,6 +150,7 @@ text = "Im outta here"
 
 [node name="GameOverScreen" type="Control" parent="CanvasLayer" unique_id=1592423143]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -193,3 +197,67 @@ text = "RUN IT BACK?"
 [node name="QuitButton" type="Button" parent="CanvasLayer/GameOverScreen/CenterContainer/VBoxContainer" unique_id=295511134]
 layout_mode = 2
 text = "OR JUST END IT ON A LOSS"
+
+[node name="StartMenu" type="Control" parent="CanvasLayer" unique_id=876872968]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_ua6yw")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/StartMenu" unique_id=1103406716]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16500518, 1.17318706e-07, 4.512258e-08, 1)
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/StartMenu" unique_id=2090597682]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 73.0
+offset_right = 727.0
+offset_bottom = 96.0
+text = "BRZO ZOMBIES"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/StartMenu" unique_id=434878750]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -42.0
+offset_right = 151.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/StartMenu/VBoxContainer" unique_id=825854432]
+layout_mode = 2
+text = "Play"
+
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/StartMenu/VBoxContainer" unique_id=1974661126]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Pick Map"
+popup/item_0/id = 0
+popup/item_0/separator = true
+popup/item_1/text = "Testing Grounds"
+popup/item_1/id = 1
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/StartMenu/VBoxContainer" unique_id=1477571168]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/StartMenu/VBoxContainer" unique_id=775250083]
+layout_mode = 2
+text = "EXIT"

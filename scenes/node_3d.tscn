@@ -1,18 +1,7 @@
 [gd_scene format=3 uid="uid://cl5y7buq1g7yu"]
 
-[ext_resource type="Script" uid="uid://262xmuwmtvqv" path="res://Scripts/player.gd" id="1_1enmr"]
-[ext_resource type="Script" uid="uid://lcvg17qkof2j" path="res://Scripts/weapon_data.gd" id="2_aj7ea"]
-[ext_resource type="Resource" uid="uid://bxe1i0y5gyuag" path="res://assets/blick.tres" id="3_1enmr"]
-[ext_resource type="PackedScene" uid="uid://bbpu8iv14t1oa" path="res://extras/blick_copy.tscn" id="4_6l3rs"]
-[ext_resource type="Resource" uid="uid://deuyjmbmfrh4l" path="res://assets/shotty.tres" id="4_aj7ea"]
-[ext_resource type="Resource" uid="uid://bjurgknx2ycf4" path="res://assets/choppa.tres" id="5_6l3rs"]
-[ext_resource type="Script" uid="uid://bhreaj1xputgv" path="res://Scripts/health.gd" id="5_umdqk"]
-[ext_resource type="AudioStream" uid="uid://c5fkfabpl0ee6" path="res://assets/universfield-gunshot-352466.mp3" id="7_1enmr"]
-[ext_resource type="AudioStream" uid="uid://bhgbu4c2dccy2" path="res://assets/freesound_community-empty-gun-shot-6209.mp3" id="8_4cwgp"]
-[ext_resource type="Script" uid="uid://bsohja5ruflm8" path="res://Scripts/gun.gd" id="8_dn2ro"]
-[ext_resource type="AudioStream" uid="uid://cqxprp7vjdby4" path="res://assets/xpmonster-toy-gun-reloading-amp-shooting-419582.mp3" id="9_aj7ea"]
+[ext_resource type="PackedScene" uid="uid://brfankd6hskx1" path="res://scenes/player.tscn" id="1_5t4e2"]
 [ext_resource type="Script" uid="uid://mrit4d7kccj7" path="res://Scripts/zombie_spawner.gd" id="10_2u1at"]
-[ext_resource type="AudioStream" uid="uid://c2shicf0lge8" path="res://assets/ak_chamber.wav" id="13_2u1at"]
 [ext_resource type="PackedScene" uid="uid://b5hagdvhitign" path="res://scenes/opp.tscn" id="14_6l3rs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4xowi"]
@@ -29,10 +18,6 @@ ambient_light_source = 1
 tonemap_mode = 2
 glow_enabled = true
 fog_light_color = Color(0.12743258, 0, 0.007587124, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4xowi"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a202f"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_74n7r"]
 vertices = PackedVector3Array(-46.402313, 0.49244738, -59.19249, -45.652313, 0.49244738, -59.19249, -45.652313, 0.49244738, -64.44249, -46.402313, 0.49244738, -64.44249, -73.15231, 0.49244738, -56.44249, -47.152313, 0.49244738, -56.44249, -47.152313, 0.49244738, -58.44249, -47.152313, 0.49244738, -65.19249, -73.15231, 0.49244738, -72.94249, -47.152313, 0.49244738, -72.94249, -73.15231, 12.742447, -72.94249, -73.15231, 12.742447, 12.30751, -47.152313, 12.742447, 12.30751, -47.152313, 12.742447, -72.94249, -44.152313, 59.742447, 15.05751, -73.15231, 59.742447, 15.05751, -73.15231, 59.742447, 72.55751, -43.402313, 59.742447, 14.30751, 73.59769, 59.742447, 72.55751, -73.15231, 59.742447, -72.94249, -73.15231, 59.742447, 12.30751, -44.152313, 59.742447, 12.30751, -43.402313, 59.742447, 13.05751, 73.59769, 59.742447, -72.94249, -44.402313, 0.49244738, -58.44249, -44.402313, 0.49244738, -65.19249, 29.347687, 0.49244738, -35.69249, 30.097687, 0.49244738, -36.44249, 32.097687, 0.49244738, -72.94249, -44.402313, 0.49244738, -13.69249, -45.652313, 0.49244738, -12.94249, -45.652313, 0.49244738, -3.9424896, -44.402313, 0.49244738, -3.1924896, 29.347687, 0.49244738, -16.19249, 30.847687, 0.49244738, 12.30751, 31.097687, 0.49244738, -15.44249, 30.097687, 0.49244738, -15.44249, -44.402313, 0.49244738, 12.30751, 32.097687, 0.49244738, -36.44249, -44.402313, 0.49244738, -72.94249, -27.902313, 12.992447, -56.69249, -26.402313, 13.492447, -56.69249, -26.652313, 13.492447, -72.94249, -44.402313, 12.742447, -55.69249, -28.402313, 12.992447, -55.69249, -44.402313, 12.742447, -72.94249, -29.61065, 12.742447, -72.94249, 31.847687, 30.242447, -57.19249, 32.097687, 30.242447, -72.44249, 31.347687, 30.242447, -72.44249, 31.097687, 30.242447, -57.19249, 31.097687, 30.242447, -72.94249, 30.847687, 30.242447, -56.69249, -15.152313, 12.742447, -56.94249, -0.40231323, 12.742447, -56.69249, -0.40231323, 12.742447, -72.94249, -15.152313, 12.742447, -72.94249, 40.097687, 0.49244738, -36.44249, 40.097687, 0.49244738, -72.94249, 42.097687, 0.49244738, -36.44249, 42.597687, 0.7424474, -35.44249, 73.59769, 0.49244738, -35.44249, 73.59769, 0.49244738, -72.94249, 33.097687, 30.242447, -56.44249, 73.59769, 30.242447, -72.44249, 33.097687, 30.242447, 72.55751, 73.59769, 30.242447, 72.55751, -15.152313, 12.742447, -55.44249, -15.902313, 12.742447, -54.69249, -0.40231323, 12.742447, -34.94249, -27.902313, 12.742447, -54.69249, 0.34768677, 12.742447, -17.44249, 2.0976868, 12.492447, -17.44249, 1.3476868, 12.742447, -34.19249, 0.34768677, 12.742447, -34.19249, -44.402313, 12.742447, -14.69249, -0.40231323, 12.742447, -14.69249, -0.40231323, 12.742447, -16.69249, -73.15231, 0.49244738, -15.69249, -47.152313, 0.49244738, -15.69249, 40.097687, 1.4924474, -34.44249, 40.097687, 1.4924474, -17.44249, 42.097687, 0.7424474, -17.44249, 42.097687, 0.7424474, -34.44249, 42.597687, 0.7424474, -16.44249, 73.59769, 0.49244738, -16.44249, 11.78038, 9.742447, -34.259796, 22.827843, 6.2424474, -32.924656, 10.847748, 9.742447, -32.962555, 32.097687, 0.49244738, 12.30751, 32.847687, 0.49244738, 13.05751, 42.097687, 0.49244738, -15.44249, 32.847687, 0.49244738, 13.80751, 73.59769, 0.49244738, 13.80751, -46.402313, 0.49244738, -3.9424896, -46.402313, 0.49244738, -12.94249, -73.15231, 0.49244738, -1.1924896, -47.152313, 0.49244738, -1.1924896, -47.152313, 0.49244738, -3.1924896, -47.152313, 0.49244738, -13.69249, -44.402313, 12.742447, 12.30751, -0.40231323, 12.742447, 12.30751, 32.347687, 12.742447, 62.80751, 30.847687, 12.742447, 62.80751, 31.097687, 12.742447, 72.55751, 33.097687, 12.742447, 62.05751, 62.097687, 12.742447, -5.4424896, 61.597687, 12.742447, -6.1924896, 33.097687, 12.742447, -5.6924896, 73.59769, 12.742447, 72.55751, 73.59769, 12.742447, -5.4424896, -73.15231, 1.4924474, 22.05751, -62.652313, 1.4924474, 22.05751, -62.652313, 0.7424474, 20.05751, -61.402313, 0.49244738, 19.55751, -47.152313, 0.49244738, 14.05751, -73.15231, 0.49244738, 19.15126, -79.65231, 12.742447, 60.80751, -75.90231, 12.742447, 60.80751, -76.15231, -2.2575526, 9.80751, -79.65231, -2.2575526, 9.80751, 32.097687, 0.49244738, 15.05751, 30.097687, 0.49244738, 72.55751, 73.59769, 0.49244738, 72.55751, 30.097687, 0.49244738, 15.05751, -60.652313, 0.49244738, 20.30751, -46.152313, 0.49244738, 15.05751, -60.652313, 0.49244738, 32.05751, -61.402313, 0.49244738, 32.80751, -73.15231, 0.49244738, 32.80751, -73.15231, 0.49244738, 72.55751, 1.5976868, 12.742447, 72.55751, 1.8476868, 12.742447, 62.80751, 0.34768677, 12.742447, 62.80751, -44.902313, 12.742447, 62.80751, -46.402313, 12.742447, 62.80751, -46.152313, 12.742447, 72.55751, -0.40231323, 12.742447, 62.05751, -44.152313, 12.742447, 62.05751, -0.40231323, 12.742447, 15.05751, -44.402313, 12.742447, 15.05751, -73.15231, 12.742447, 61.80751, -63.152313, 12.742447, 61.80751, -63.152313, 12.742447, 60.80751, -62.652313, 12.492447, 60.55751, -71.665794, 11.242447, 55.56688, -61.152313, 12.742447, 72.55751, -60.902313, 12.742447, 62.80751, -62.402313, 12.742447, 62.80751, -73.15231, 12.742447, 72.55751)
@@ -93,80 +78,9 @@ albedo_color = Color(0.972549, 1, 0.70980394, 1)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1223653238]
 environment = SubResource("Environment_noarx")
 
-[node name="player" type="CharacterBody3D" parent="." unique_id=571306172 groups=["player"]]
+[node name="player" parent="." unique_id=861523990 instance=ExtResource("1_5t4e2")]
 unique_name_in_owner = true
 transform = Transform3D(-0.06686908, 0, 0.9977618, 0, 1, 0, -0.9977618, 0, -0.06686908, 6.2684994, 1.5607417, 0)
-script = ExtResource("1_1enmr")
-weapons = Array[ExtResource("2_aj7ea")]([ExtResource("3_1enmr"), ExtResource("4_aj7ea"), ExtResource("5_6l3rs")])
-third_person_dist = 10.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="player" unique_id=1359214587]
-mesh = SubResource("CapsuleMesh_4xowi")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="player" unique_id=1039112174]
-shape = SubResource("CapsuleShape3D_a202f")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="player" unique_id=1155917616]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.71868134, 0)
-light_energy = 0.01
-light_indirect_energy = 0.0
-light_volumetric_fog_energy = 0.0
-light_specular = 0.0
-shadow_enabled = true
-distance_fade_enabled = true
-distance_fade_begin = 10.0
-omni_range = 13.774828
-
-[node name="neck" type="Node3D" parent="player" unique_id=1591808264]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.571, 0)
-
-[node name="RayCast3D" type="RayCast3D" parent="player/neck" unique_id=1869427275]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.37114e-08, 5.9604645e-08, 0.08699989, -0.0539999)
-target_position = Vector3(0, 10, 0)
-
-[node name="SpringArm3D" type="SpringArm3D" parent="player/neck" unique_id=1142709174]
-spring_length = 0.0
-margin = 0.5
-
-[node name="POV" type="Camera3D" parent="player/neck/SpringArm3D" unique_id=1179686257]
-rotation_order = 0
-current = true
-
-[node name="Gun" type="Node3D" parent="player/neck" unique_id=76071365]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6412536, -0.38358498, -0.47133014)
-script = ExtResource("8_dn2ro")
-weapons = Array[ExtResource("2_aj7ea")]([ExtResource("3_1enmr"), ExtResource("5_6l3rs"), ExtResource("4_aj7ea")])
-
-[node name="ModelSlot" type="Node3D" parent="player/neck/Gun" unique_id=2061162057]
-
-[node name="MuzzleFlash" type="OmniLight3D" parent="player/neck/Gun" unique_id=813987375]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025861308, 0.06434417, -0.47563362)
-visible = false
-light_color = Color(1, 0.8666667, 0.23137255, 1)
-light_energy = 3.105
-shadow_enabled = true
-shadow_opacity = 0.87
-shadow_blur = 7.854
-omni_range = 18.294
-
-[node name="GunMesh" parent="player/neck/Gun" unique_id=2088814401 instance=ExtResource("4_6l3rs")]
-visible = false
-
-[node name="Health" type="Node" parent="player" unique_id=1808181859]
-script = ExtResource("5_umdqk")
-metadata/_custom_type_script = "uid://bhreaj1xputgv"
-
-[node name="ShotSound" type="AudioStreamPlayer" parent="player" unique_id=632472034]
-stream = ExtResource("7_1enmr")
-
-[node name="EmptySound" type="AudioStreamPlayer" parent="player" unique_id=206288592]
-stream = ExtResource("8_4cwgp")
-
-[node name="ReloadSound" type="AudioStreamPlayer" parent="player" unique_id=1021940045]
-stream = ExtResource("9_aj7ea")
-
-[node name="PickupSound" type="AudioStreamPlayer" parent="player" unique_id=303081354]
-stream = ExtResource("13_2u1at")
 
 [node name="ZombieManager" type="Node3D" parent="." unique_id=907975378 groups=["spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0191898, -0.9519602, -1.4252374)
