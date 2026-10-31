@@ -23,7 +23,6 @@ func _ready() -> void:
 func show_screen() -> void:
 	paused.emit()
 	map_name = get_tree().get_current_scene().name
-	print(map_name)
 	title_label.text = "PAUSED - " + map_name
 	show()
 	get_tree().paused = true
@@ -35,7 +34,7 @@ func _on_resume_pressed() -> void:
 	get_tree().paused = false
 
 func _on_settings_pressed() -> void:
-	pass
+	$"../OptionsMenu".show_screen()
 
 func _on_restart_pressed() -> void:
 	hide()
@@ -43,7 +42,10 @@ func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
 
 func _on_quit_pressed() -> void:
-	get_tree().quit()
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/start.tscn")
+	$"../StartMenu".show_screen()
+	hide()
 
 
 func _input(event: InputEvent) -> void:

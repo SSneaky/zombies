@@ -1,8 +1,6 @@
 extends Control
 
-
 @onready var play_button: Button = $VBoxContainer/PlayButton
-@onready var option_button: OptionButton = $VBoxContainer/OptionButton
 @onready var quit_button: Button = $VBoxContainer/QuitButton
 @onready var settings_button: Button = $VBoxContainer/SettingsButton
 
@@ -20,12 +18,12 @@ func show_screen() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_play_pressed() -> void:
+	$"../MapSelect".show_screen()
 	hide()
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	get_tree().paused = false
 
 func _on_settings_pressed() -> void:
-	pass
+	$"../OptionsMenu".show_screen()
+	hide()
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
