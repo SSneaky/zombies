@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://4ya3j5x8npup"]
 
-[ext_resource type="Script" uid="uid://bgmgu3isdmkey" path="res://scenes/ui.gd" id="1_3wlde"]
+[ext_resource type="Script" uid="uid://bgmgu3isdmkey" path="res://Scripts/ui.gd" id="1_3wlde"]
 [ext_resource type="Script" uid="uid://blf7ckkdggd6g" path="res://Scripts/crosshair.gd" id="1_5en4g"]
 [ext_resource type="Script" uid="uid://du6e2t7d22rg3" path="res://Scripts/pause_menu.gd" id="1_dj8aq"]
 [ext_resource type="Script" uid="uid://biqxcggslxlow" path="res://Scripts/game_over_screen.gd" id="3_ua6yw"]
@@ -8,7 +8,17 @@
 [ext_resource type="Script" uid="uid://cfqtl1ec3tu5a" path="res://Scripts/map_select.gd" id="5_75u2n"]
 [ext_resource type="Script" uid="uid://c62dpcyqpy3ms" path="res://scenes/options_menu.gd" id="7_xpksx"]
 
-[node name="Control" type="Control" unique_id=657239388 groups=["PauseMenu"]]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_74n7r"]
+color = Color(1, 1, 1, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpksx"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_xpksx"]
+color = Color(0.34108615, 0.34108615, 0.34108615, 1)
+
+[node name="UIManager" type="Control" unique_id=657239388 groups=["PauseMenu"]]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -21,6 +31,7 @@ script = ExtResource("1_3wlde")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=736794565]
 
 [node name="PlayerHud" type="Control" parent="CanvasLayer" unique_id=1834318444]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,6 +102,7 @@ grow_horizontal = 2
 [node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=1464076494 groups=["PauseMenu"]]
 unique_name_in_owner = true
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -152,6 +164,7 @@ text = "Im outta here"
 
 [node name="GameOverScreen" type="Control" parent="CanvasLayer" unique_id=1592423143]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -200,6 +213,7 @@ layout_mode = 2
 text = "OR JUST END IT ON A LOSS"
 
 [node name="StartMenu" type="Control" parent="CanvasLayer" unique_id=876872968]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -262,6 +276,7 @@ layout_mode = 2
 text = "EXIT"
 
 [node name="MapSelect" type="Control" parent="CanvasLayer" unique_id=706612214]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -335,6 +350,7 @@ offset_bottom = 614.0
 text = "Back"
 
 [node name="OptionsMenu" type="Control" parent="CanvasLayer" unique_id=1781938007]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -373,3 +389,65 @@ offset_top = 583.0
 offset_right = 95.0
 offset_bottom = 614.0
 text = "Back"
+
+[node name="Panel" type="Panel" parent="CanvasLayer/OptionsMenu" unique_id=2033101360]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -168.0
+offset_right = 500.0
+offset_bottom = 232.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/OptionsMenu/Panel" unique_id=701763182]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.288
+anchor_bottom = 0.5
+offset_left = 89.0
+offset_top = -8.0
+offset_right = 89.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/slider = SubResource("StyleBoxLine_74n7r")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_xpksx")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_xpksx")
+
+[node name="HSlider2" type="HSlider" parent="CanvasLayer/OptionsMenu/Panel" unique_id=1270826100]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.288
+anchor_bottom = 0.5
+offset_left = 89.0
+offset_top = 66.0
+offset_right = 89.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/slider = SubResource("StyleBoxLine_74n7r")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_xpksx")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_xpksx")
+
+[node name="FXVolume" type="Label" parent="CanvasLayer/OptionsMenu/Panel" unique_id=175035335]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 153.0
+offset_right = 123.0
+offset_bottom = 176.0
+text = "FX Volume"
+
+[node name="MusicVolume" type="Label" parent="CanvasLayer/OptionsMenu/Panel" unique_id=730457128]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 229.0
+offset_right = 165.0
+offset_bottom = 252.0
+text = "Music Volume"

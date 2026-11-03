@@ -3,27 +3,23 @@ extends Control
 @onready var play_button: Button = $VBoxContainer/PlayButton
 @onready var quit_button: Button = $VBoxContainer/QuitButton
 @onready var settings_button: Button = $VBoxContainer/SettingsButton
+@onready var ui_manager: UIManager = $"../.."
+
 
 var map = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	show()
 	play_button.pressed.connect(_on_play_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 
-func show_screen() -> void:
-	show()
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_play_pressed() -> void:
-	$"../MapSelect".show_screen()
-	hide()
+	ui_manager.show_screen(&"MapSelect")
 
 func _on_settings_pressed() -> void:
-	$"../OptionsMenu".show_screen()
-	hide()
+	ui_manager.show_screen(&"OptionsMenu")
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

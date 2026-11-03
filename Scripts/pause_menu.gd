@@ -9,6 +9,8 @@ signal paused
 @onready var settings_button: Button = $VBoxContainer/SettingsButton
 @onready var quit_button: Button = $VBoxContainer/QuitButton
 @onready var death_screen: Control = $"../GameOverScreen"
+@onready var ui_manager: UIManager = $"../.."
+
 
 var map_name = null
 
@@ -20,18 +22,10 @@ func _ready() -> void:
 	settings_button.pressed.connect(_on_settings_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 
-func show_screen() -> void:
-	paused.emit()
-	map_name = get_tree().get_current_scene().name
-	title_label.text = "PAUSED - " + map_name
-	show()
-	get_tree().paused = true
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
 
 func _on_resume_pressed() -> void:
-	hide()
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	get_tree().paused = false
+	ui_manager.clear_screen()
 
 func _on_settings_pressed() -> void:
 	$"../OptionsMenu".show_screen()
@@ -46,15 +40,3 @@ func _on_quit_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/start.tscn")
 	$"../StartMenu".show_screen()
 	hide()
-
-
-func _input(event: InputEvent) -> void:
-	if not death_screen.visible:
-		if event.is_action_pressed("exit") and not get_tree().paused:
-			show_screen()
-			get_viewport().set_input_as_handled()
-		elif event.is_action_pressed("exit") and get_tree().paused:
-			_on_resume_pressed()
-			get_viewport().set_input_as_handled()
-	else:
-		pass
