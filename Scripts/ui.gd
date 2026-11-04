@@ -11,15 +11,16 @@ signal is_paused(bool)
 @onready var map_select: Control = $CanvasLayer/MapSelect
 @onready var options_menu: Control = $CanvasLayer/OptionsMenu
 
-@export var start_path: String = " "
+@export var start_path: String = ""
 
 
-var current_map_path: String = " "
+var current_map_path: String = ""
 var current_screen: StringName = &""
 var _screens := {}
 var _screen_history: Array[StringName] = []
 
 func _ready() -> void:
+	current_map_path = start_path
 	clear_screen()
 	show_screen(&"StartMenu")
 	print(_screens)
@@ -29,12 +30,9 @@ func change_map(path: String):
 	get_tree().change_scene_to_file(path)
 	scene_changed.emit(path)
 	clear_screen()
-	if current_map_path != " " or not start_path:
+	if path != start_path:
 		show_screen(&"PlayerHud")
 		toggle_pause(false, false)
-	if current_map_path == start_path:
-		show_screen(&"StartMenu")
-		toggle_pause(false, true)
 
 func clear_screen() -> void:
 	for child in justonemore.get_children():
@@ -56,13 +54,16 @@ func show_screen(screen_name: StringName, push_history := true) -> void:
 			_screen_history.append(old)
 	current_screen = screen_name
 	_screens[screen_name].visible = true
+	if current_screen != &"PlayerHud":
+		toggle_pause(false, true)
 	screen_changed.emit(old, screen_name)
 	print("swapping " + old + " for " + screen_name)
 	
 func go_back() -> void:
-		if _screen_history.is_empty():
-			return
-		show_screen(_screen_history.pop_back(), false)
+		#if _screen_history.is_empty():
+			#return
+	clear_screen()
+	show_screen(_screen_history.pop_back(), false)
 
 func toggle_pause(pause_state: bool, mouse_state: bool):
 	get_tree().paused = pause_state
@@ -75,15 +76,16 @@ func toggle_pause(pause_state: bool, mouse_state: bool):
 	is_paused.emit(pause_state)
 
 func _input(event: InputEvent) -> void:
-	if not current_map_path == " " or start_path:
-		if event.is_action_pressed("exit") and not get_tree().paused:
+	if current_map_path != start_path:
+		if event.is_action_pressed("exit") and not get_tree().paused or current_screen == &"OptionsMenu":
 			show_screen(&"PauseMenu")
 			toggle_pause(true, true)
 			get_viewport().set_input_as_handled()
 		elif event.is_action_pressed("exit") and get_tree().paused:
-			clear_screen()
-			show_screen(&"PlayerHud")
-			toggle_pause(false, false)
+			go_back()
+			#clear_screen()
+			#show_screen(&"PlayerHud")
+			#toggle_pause(false, false)
 			get_viewport().set_input_as_handled()
 	else:
 		pass
