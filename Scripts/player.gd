@@ -7,7 +7,6 @@ const JUMP_VELOCITY = 6.0
 const MOUSE_SENS:float = 0.01
 
 
-@export var weapons: Array[WeaponData] = []
 @export var third_person: bool = false
 @export var third_person_dist: float = 3.0
 @export var third_person_shoulder: float = 0.7
@@ -31,8 +30,8 @@ var wave_num: int = 0
 @onready var spring_arm: SpringArm3D = $neck/SpringArm3D
 @onready var camera: Camera3D = $neck/SpringArm3D/POV
 @onready var body_mesh: MeshInstance3D = $MeshInstance3D
+@onready var ui_manager: UIManager = UI
 @onready var kills_label: Label = UI.get_node("CanvasLayer/PlayerHud/KillsLabel")
-@onready var game_over_screen: GameOverScreen = UI.get_node("CanvasLayer/GameOverScreen")
 @onready var wave_label: Label = UI.get_node("CanvasLayer/PlayerHud/WaveLabel")
 @onready var pause_menu: Control = UI.get_node("CanvasLayer/PauseMenu")
 
@@ -69,28 +68,20 @@ func _on_health_changed(ahora: int, maximum: int) -> void:
 	health_bar.value = ahora
 
 func _on_died() -> void:
-	game_over_screen.show_screen(kills)
+	ui_manager.push(&"GameOverScreen")
 
 #mouse cursor logic
 func _input(event: InputEvent) -> void:
-#	if Input.is_action_pressed("exit") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-#		UI.get_node("CanvasLayer/PauseMenu").show_screen()
-#	elif Input.is_action_pressed("exit") and pause_menu.paused == true:
-#		pause_menu._on_resume_pressed()
-
-	if event is InputEventMouseButton and event.pressed:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var mouse_motion:Vector2 = event.relative
 		rotate_y(-(mouse_motion.x * MOUSE_SENS))
 		neck.rotate_x(-(mouse_motion.y * MOUSE_SENS))
 		neck.rotation.x = deg_to_rad(clamp(rad_to_deg(neck.rotation.x), -90, 90))
 	if event.is_action_pressed('weapon_next'):
-		gun._equip((current_index + 1) % weapons.size())
+		gun._equip((current_index + 1) % gun.weapons.size())
 	if event.is_action_pressed("weapon_prev"):
-		gun._equip((current_index - 1 + weapons.size()) % weapons.size())
-	for i in weapons.size():
+		gun._equip((current_index - 1 + gun.weapons.size()) % gun.weapons.size())
+	for i in gun.weapons.size():
 		var action := "weapon_%d" % (i+1)
 		if InputMap.has_action(action) and event.is_action_pressed(action):
 			gun._equip(i)
@@ -114,7 +105,7 @@ func show_pickup_message(text: String) -> void:
 
 func add_kill() -> void:
 	kills += 1
-	_update_kills_label()
+
 func _update_kills_label() -> void:
 	kills_label.text = "Kills %d" % kills
 

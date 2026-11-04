@@ -12,9 +12,6 @@ func _ready() -> void:
 	map_button.pressed.connect(_on_map_pressed)
 	back_button.pressed.connect(_on_back_pressed)
 
-func show_screen() -> void:
-	show()
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_map_pressed() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

@@ -17,24 +17,7 @@ func _ready() -> void:
 	settings_button.pressed.connect(_on_settings_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 
-
-
-func _on_resume_pressed() -> void:
-	ui_manager.clear_screen()
-	ui_manager.show_screen(&"PlayerHud")
-	ui_manager.toggle_pause(false, false)
-
-func _on_settings_pressed() -> void:
-	ui_manager.show_screen(&"OptionsMenu")
-
-func _on_restart_pressed() -> void:
-	ui_manager.clear_screen()
-	ui_manager.show_screen(&"PlayerHud")
-	ui_manager.toggle_pause(false, false)
-	get_tree().reload_current_scene()
-
-func _on_quit_pressed() -> void:
-	ui_manager.toggle_pause(false, true)
-	ui_manager.change_map("res://scenes/start.tscn")
-	ui_manager.clear_screen()
-	ui_manager.show_screen(&"StartMenu")
+func _on_resume_pressed() -> void: ui_manager.pop()
+func _on_settings_pressed() -> void: ui_manager.push(&"OptionsMenu")
+func _on_restart_pressed() -> void: ui_manager.restart()
+func _on_quit_pressed() -> void: ui_manager.change_map(ui_manager.start_path)

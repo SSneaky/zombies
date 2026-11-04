@@ -20,7 +20,6 @@
 [node name="player" type="CharacterBody3D" unique_id=861523990 groups=["player"]]
 transform = Transform3D(-0.06686908, 0, 0.9977618, 0, 1, 0, -0.9977618, 0, -0.06686908, 0, 0, 0)
 script = ExtResource("1_3v2ag")
-weapons = Array[ExtResource("2_jej6c")]([ExtResource("3_f1ej7"), ExtResource("4_oprun"), ExtResource("5_a8ls1")])
 third_person_dist = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2047889811]
