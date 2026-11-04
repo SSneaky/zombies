@@ -41,7 +41,6 @@ var wave_num: int = 0
 
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	health.health_changed.connect(_on_health_changed)
 	health.died.connect(_on_died)
 	_on_health_changed(health.current_health, health.max_health)

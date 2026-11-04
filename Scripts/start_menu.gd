@@ -13,6 +13,7 @@ func _ready() -> void:
 	play_button.pressed.connect(_on_play_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
+	ui_manager.screen_changed.connect(_on_screen_changed)
 
 
 func _on_play_pressed() -> void:
@@ -23,3 +24,7 @@ func _on_settings_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+func _on_screen_changed() -> void:
+	if ui_manager.current_screen == &"StartMenu":
+		ui_manager.toggle_pause(false, true)
