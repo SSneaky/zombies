@@ -14,9 +14,10 @@ func _ready() -> void:
 
 
 func _on_map_pressed() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	ui_manager.change_map("res://scenes/node_3d.tscn")
+	ui_manager.push(&"PlayerHud")
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 func _on_back_pressed() -> void:
-	ui_manager.go_back()
+	ui_manager.pop()
