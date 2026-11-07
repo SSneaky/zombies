@@ -5,19 +5,12 @@ extends Control
 @onready var ui_manager: UIManager = $"../.."
 
 
-var map = null
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	map_button.pressed.connect(_on_map_pressed)
 	back_button.pressed.connect(_on_back_pressed)
 
-
 func _on_map_pressed() -> void:
 	ui_manager.change_map("res://scenes/node_3d.tscn")
-	ui_manager.push(&"PlayerHud")
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	ui_manager.set_base(&"PlayerHud")
 
-
-func _on_back_pressed() -> void:
-	ui_manager.pop()
+func _on_back_pressed() -> void: ui_manager.pop()

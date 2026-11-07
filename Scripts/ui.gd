@@ -5,7 +5,6 @@ signal screen_changed(base: StringName, top: StringName)
 signal pause_changed(is_paused: bool)
 
 @onready var justonemore: CanvasLayer = $CanvasLayer
-@onready var player: CharacterBody3D = get_tree().get_first_node_in_group("player")
 
 const PAUSING: Array[StringName] = [&"PauseMenu", &"GameOverScreen"]
 
@@ -23,11 +22,12 @@ func _ready() -> void:
 		if child is Control:
 			_screens[child.name] = child
 			child.visible = false
-		print(_screens)
-		set_base(&"StartMenu")
+			#print(_screens)
+	set_base(&"StartMenu")
 
 func set_base(screen: StringName) -> void:
 	if not _screens.has(screen):
+		print(_screens)
 		push_error("ion know %s, playa" % screen)
 		return
 	clear_screen(false)
@@ -40,6 +40,9 @@ func set_base(screen: StringName) -> void:
 func push(screen: StringName) -> void:
 	if not _screens.has(screen):
 		push_error("why does push() lowk not see %s" % screen)
+		return
+	if screen == &"PlayerHud":
+		push_error("cant push the HUD dumbass, use set_base()")
 		return
 	if top() == screen:
 		return
@@ -66,6 +69,9 @@ func clear_screen(apply := true) -> void:
 
 func top() -> StringName:
 	return _screen_history.back() if not _screen_history.is_empty() else &""
+
+#func get_kids() -> Array:
+	
 
 func change_map(path: String) -> void:
 	current_map_path = path
@@ -101,7 +107,3 @@ func _input(event: InputEvent) -> void:
 		push(&"PauseMenu")
 	else:
 		pop()
-
-func _on_player_died() -> void:
-	pass
-	

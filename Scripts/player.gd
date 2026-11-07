@@ -68,6 +68,7 @@ func _on_health_changed(ahora: int, maximum: int) -> void:
 	health_bar.value = ahora
 
 func _on_died() -> void:
+	ui_manager.get_node("CanvasLayer/GameOverScreen/CenterContainer/VBoxContainer/FinalKillsLabel").text = "Kills: %d" % kills
 	ui_manager.push(&"GameOverScreen")
 
 #mouse cursor logic
@@ -105,6 +106,7 @@ func show_pickup_message(text: String) -> void:
 
 func add_kill() -> void:
 	kills += 1
+	_update_kills_label()
 
 func _update_kills_label() -> void:
 	kills_label.text = "Kills %d" % kills
