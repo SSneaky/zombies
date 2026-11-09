@@ -14,7 +14,7 @@ func _ready() -> void:
 	quit_button.pressed.connect(_on_quit_pressed)
 
 
-func _on_play_pressed() -> void: ui_manager.push(&"MapSelect")
+func _on_play_pressed() -> void: ui_manager.set_base(&"PlayerHud")
 
 func _on_settings_pressed() -> void: ui_manager.push(&"OptionsMenu")
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="AudioStream" uid="uid://bhgbu4c2dccy2" path="res://assets/freesound_community-empty-gun-shot-6209.mp3" id="1_hmosw"]
 [ext_resource type="PackedScene" uid="uid://3lw3q8fdnisc" path="res://scenes/shotty.tscn" id="1_lmer5"]
-[ext_resource type="Script" uid="uid://lcvg17qkof2j" path="res://Scripts/weapon_data.gd" id="2_npcdx"]
+[ext_resource type="Script" uid="uid://lcvg17qkof2j" path="res://Scripts/game_scripts/gun_scripts/weapon_data.gd" id="2_npcdx"]
 [ext_resource type="AudioStream" uid="uid://dbsjt0a2ncq4x" path="res://assets/shotty_reload.wav" id="3_hmosw"]
 [ext_resource type="AudioStream" uid="uid://rggbl415enge" path="res://assets/shotty_fire.wav" id="5_vgead"]
 

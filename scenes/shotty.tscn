@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://3lw3q8fdnisc"]
 
-[ext_resource type="Script" uid="uid://cx1kci7ai0omd" path="res://Scripts/shotty_lasers.gd" id="1_nail3"]
+[ext_resource type="Script" uid="uid://cx1kci7ai0omd" path="res://Scripts/game_scripts/gun_scripts/shotty_lasers.gd" id="1_nail3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_74n7r"]
 size = Vector3(1, 1.654602, 1.9066772)

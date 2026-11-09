@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://brfankd6hskx1"]
 
-[ext_resource type="Script" uid="uid://262xmuwmtvqv" path="res://Scripts/player.gd" id="1_3v2ag"]
-[ext_resource type="Script" uid="uid://lcvg17qkof2j" path="res://Scripts/weapon_data.gd" id="2_jej6c"]
+[ext_resource type="Script" uid="uid://262xmuwmtvqv" path="res://Scripts/game_scripts/player/player.gd" id="1_3v2ag"]
+[ext_resource type="Script" uid="uid://lcvg17qkof2j" path="res://Scripts/game_scripts/gun_scripts/weapon_data.gd" id="2_jej6c"]
 [ext_resource type="Resource" uid="uid://bxe1i0y5gyuag" path="res://assets/blick.tres" id="3_f1ej7"]
 [ext_resource type="Resource" uid="uid://deuyjmbmfrh4l" path="res://assets/shotty.tres" id="4_oprun"]
 [ext_resource type="Resource" uid="uid://bjurgknx2ycf4" path="res://assets/choppa.tres" id="5_a8ls1"]
-[ext_resource type="Script" uid="uid://bsohja5ruflm8" path="res://Scripts/gun.gd" id="6_qfm1y"]
+[ext_resource type="Script" uid="uid://bsohja5ruflm8" path="res://Scripts/game_scripts/gun_scripts/gun.gd" id="6_qfm1y"]
 [ext_resource type="PackedScene" uid="uid://bbpu8iv14t1oa" path="res://extras/blick_copy.tscn" id="7_fulsm"]
-[ext_resource type="Script" uid="uid://bhreaj1xputgv" path="res://Scripts/health.gd" id="8_4r5pv"]
+[ext_resource type="Script" uid="uid://bhreaj1xputgv" path="res://Scripts/game_scripts/health.gd" id="8_4r5pv"]
 [ext_resource type="AudioStream" uid="uid://c5fkfabpl0ee6" path="res://assets/universfield-gunshot-352466.mp3" id="9_60mlk"]
 [ext_resource type="AudioStream" uid="uid://bhgbu4c2dccy2" path="res://assets/freesound_community-empty-gun-shot-6209.mp3" id="10_i4ail"]
 [ext_resource type="AudioStream" uid="uid://cqxprp7vjdby4" path="res://assets/xpmonster-toy-gun-reloading-amp-shooting-419582.mp3" id="11_a38lo"]
@@ -16,6 +16,11 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4xowi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a202f"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3v2ag"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="player" type="CharacterBody3D" unique_id=861523990 groups=["player"]]
 transform = Transform3D(-0.06686908, 0, 0.9977618, 0, 1, 0, -0.9977618, 0, -0.06686908, 0, 0, 0)
@@ -89,3 +94,6 @@ stream = ExtResource("11_a38lo")
 
 [node name="PickupSound" type="AudioStreamPlayer" parent="." unique_id=1240036580]
 stream = ExtResource("12_4ni07")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1259779319]
+replication_config = SubResource("SceneReplicationConfig_3v2ag")

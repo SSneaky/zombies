@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://4ya3j5x8npup"]
 
-[ext_resource type="Script" uid="uid://bgmgu3isdmkey" path="res://Scripts/ui.gd" id="1_3wlde"]
-[ext_resource type="Script" uid="uid://blf7ckkdggd6g" path="res://Scripts/crosshair.gd" id="1_5en4g"]
-[ext_resource type="Script" uid="uid://du6e2t7d22rg3" path="res://Scripts/pause_menu.gd" id="1_dj8aq"]
-[ext_resource type="Script" uid="uid://biqxcggslxlow" path="res://Scripts/game_over_screen.gd" id="3_ua6yw"]
-[ext_resource type="Script" uid="uid://btfhqw1won4wh" path="res://Scripts/start_menu.gd" id="4_ua6yw"]
-[ext_resource type="Script" uid="uid://cfqtl1ec3tu5a" path="res://Scripts/map_select.gd" id="5_75u2n"]
+[ext_resource type="Script" uid="uid://bgmgu3isdmkey" path="res://Scripts/ui_scripts/ui.gd" id="1_3wlde"]
+[ext_resource type="Script" uid="uid://blf7ckkdggd6g" path="res://Scripts/ui_scripts/crosshair.gd" id="1_5en4g"]
+[ext_resource type="Script" uid="uid://du6e2t7d22rg3" path="res://Scripts/ui_scripts/pause_menu.gd" id="1_dj8aq"]
+[ext_resource type="Script" uid="uid://biqxcggslxlow" path="res://Scripts/ui_scripts/game_over_screen.gd" id="3_ua6yw"]
+[ext_resource type="Script" uid="uid://btfhqw1won4wh" path="res://Scripts/ui_scripts/start_menu.gd" id="4_ua6yw"]
+[ext_resource type="Script" uid="uid://cfqtl1ec3tu5a" path="res://Scripts/ui_scripts/map_select.gd" id="5_75u2n"]
 [ext_resource type="Script" uid="uid://c62dpcyqpy3ms" path="res://scenes/options_menu.gd" id="7_xpksx"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_74n7r"]
@@ -27,6 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3wlde")
+start_path = "res://scenes/start.tscn"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=736794565]
 

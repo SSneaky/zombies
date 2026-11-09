@@ -74,10 +74,15 @@ func top() -> StringName:
 	
 
 func change_map(path: String) -> void:
-	current_map_path = path
-	clear_screen(false)
-	get_tree().change_scene_to_file(path)
-	set_base(&"StartMenu" if path == start_path else &"PlayerHud")
+	if current_map_path == start_path:
+		clear_screen(false)
+		set_base(&"StartMenu")
+		get_tree().reload_current_scene()
+	else:
+		current_map_path = path
+		clear_screen(false)
+		get_tree().change_scene_to_file(path)
+		set_base(&"StartMenu" if path == start_path else &"PlayerHud")
 
 func restart() -> void:
 	clear_screen()
@@ -107,3 +112,8 @@ func _input(event: InputEvent) -> void:
 		push(&"PauseMenu")
 	else:
 		pop()
+
+#multiplayer logic, trying to find a home for it
+func _on_play_button_pressed() -> void:
+	NetworkManger.host_lobby()
+	

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cl5y7buq1g7yu"]
 
 [ext_resource type="PackedScene" uid="uid://brfankd6hskx1" path="res://scenes/player.tscn" id="1_5t4e2"]
-[ext_resource type="Script" uid="uid://mrit4d7kccj7" path="res://Scripts/zombie_spawner.gd" id="10_2u1at"]
+[ext_resource type="Script" uid="uid://mrit4d7kccj7" path="res://Scripts/game_scripts/zombie_scripts/zombie_spawner.gd" id="10_2u1at"]
 [ext_resource type="PackedScene" uid="uid://b5hagdvhitign" path="res://scenes/opp.tscn" id="14_6l3rs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4xowi"]
