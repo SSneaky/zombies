@@ -53,6 +53,9 @@ func _ready() -> void:
 		spawner.remaining_changed.connect(_on_remaining_changed)
 		spawner.break_tick.connect(_on_break_tick)
 
+func _enter_tree() -> void:
+	set_multiplayer_authority(name.to_int())
+
 func _on_wave_started(wave: int) -> void:
 	wave_num = wave
 	wave_label.text = "Wave %d" % wave
@@ -112,8 +115,9 @@ func _update_kills_label() -> void:
 	kills_label.text = "Kills %d" % kills
 
 func _physics_process(delta: float) -> void:
-#	if global_position.distance_to(last_pos) > 1.0:
-#		print('player jumped: ', last_pos, ' -> ', global_position, " at ", Time.get_ticks_msec(), " ms")
+	if not is_multiplayer_authority():
+		return
+	
 	last_pos = global_position
 	
 	if Input.is_action_just_pressed('reload'):
