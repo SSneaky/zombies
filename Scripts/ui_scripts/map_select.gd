@@ -12,5 +12,6 @@ func _ready() -> void:
 func _on_map_pressed() -> void:
 	ui_manager.change_map("res://scenes/node_3d.tscn")
 	ui_manager.set_base(&"PlayerHud")
+	NetworkManger.host_lobby()
 
 func _on_back_pressed() -> void: ui_manager.pop()

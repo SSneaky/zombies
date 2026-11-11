@@ -74,15 +74,10 @@ func top() -> StringName:
 	
 
 func change_map(path: String) -> void:
-	if current_map_path == start_path:
-		clear_screen(false)
-		set_base(&"StartMenu")
-		get_tree().reload_current_scene()
-	else:
-		current_map_path = path
-		clear_screen(false)
-		get_tree().change_scene_to_file(path)
-		set_base(&"StartMenu" if path == start_path else &"PlayerHud")
+	current_map_path = path
+	clear_screen(false)
+	get_tree().change_scene_to_file(path)
+	set_base(&"StartMenu" if path == start_path else &"PlayerHud")
 
 func restart() -> void:
 	clear_screen()

@@ -346,6 +346,7 @@ offset_bottom = 614.0
 text = "Back"
 
 [node name="OptionsMenu" type="Control" parent="CanvasLayer" unique_id=1781938007]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
