@@ -43,9 +43,12 @@ func _ready() -> void:
 	health.health_changed.connect(_on_health_changed)
 	health.died.connect(_on_died)
 	_on_health_changed(health.current_health, health.max_health)
+	camera.current = is_multiplayer_authority()
 	spring_arm.add_excluded_object(get_rid())
-	body_mesh.visible = false
-	gun._equip(0)
+	body_mesh.visible = not is_multiplayer_authority()
+	gun._set_weapon(0)
+	if is_multiplayer_authority():
+		gun._refresh_hud()
 	_update_kills_label()
 	var spawner := get_tree().get_first_node_in_group("spawner")
 	if spawner:
@@ -76,6 +79,8 @@ func _on_died() -> void:
 
 #mouse cursor logic
 func _input(event: InputEvent) -> void:
+	if not is_multiplayer_authority():
+		return
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var mouse_motion:Vector2 = event.relative
 		rotate_y(-(mouse_motion.x * MOUSE_SENS))

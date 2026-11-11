@@ -12,15 +12,18 @@ func _on_host_created() -> void:
 	multiplayer.peer_connected.connect(spawn_player)
 
 func spawn_player(peer_id: int) -> void:
+	if not multiplayer.is_server():
+		return
 	var new_player := PLAYER.instantiate() as CharacterBody3D
 	new_player.name = str(peer_id)
-	add_child(new_player)
+	new_player.position = Vector3.ZERO
+	$SpawnPoint.add_child(new_player)
 	initialize_player(new_player)
 
 func initialize_player(player: CharacterBody3D) -> void:
-	player.position = $SpawnPoint.position
 	for other in players:
 		player.add_collision_exception_with(other)
+		other.add_collision_exception_with(player)
 	players.append(player)
 
 #multiplayer logic, idk where to put it

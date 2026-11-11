@@ -23,7 +23,6 @@ var fire_cooldown_left: float = 0.0
 
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for w in weapons:
 		ammo.append(w.mag_size)
@@ -32,8 +31,9 @@ func _ready() -> void:
 			reserve[w.ammo_type] = w.starting_reserve
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not is_multiplayer_authority():
+		return
 	fire_cooldown_left -= delta
 	
 	var wants_fire: bool = Input.is_action_pressed("fire") if current.automatic else Input.is_action_just_pressed("fire")
@@ -46,6 +46,15 @@ func _process(delta: float) -> void:
 func _equip(index: int) -> void:
 	if reloading or index == current_index and current != null:
 		return
+	_set_weapon(index)
+	_equip_remote.rpc(index)
+	_refresh_hud()
+
+@rpc("authority", "call_remote", "reliable")
+func _equip_remote(index: int) -> void:
+	_set_weapon(index)
+
+func _set_weapon(index: int) -> void:
 	current_index = index
 	current = weapons[index]
 	for child in model_slot.get_children():
@@ -59,17 +68,23 @@ func _equip(index: int) -> void:
 	reload_sound.stream = current.reload_sound
 	empty_sound.stream = current.empty_sound
 	ray.target_position = Vector3(0, 0, -current.max_range)
+	
+func _refresh_hud() -> void:
 	crosshair.gap = 5.0 + current.spread_degrees * 4.0
 	_update_ammo_label()
-
 
 func _shoot() -> void:
 	ammo[current_index] -= 1
 	fire_cooldown_left = current.fire_cooldown
 	_update_ammo_label()
 	_shot_feedback()
+	_shot_feedback_remote.rpc()
 	for i in current.pellets:
 		_fire_pellet()
+
+@rpc("authority", "call_remote", "unreliable")
+func _shot_feedback_remote() -> void:
+	_shot_feedback()
 
 func _fire_pellet() -> void:
 	var spread := deg_to_rad(current.spread_degrees)
