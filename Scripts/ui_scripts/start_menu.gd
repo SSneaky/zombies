@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 func _on_play_pressed() -> void: 
-	ui_manager.set_base(&"PlayerHud")
+	ui_manager.push(&"MapSelect")
 	NetworkManger.host_lobby()
 
 func _on_settings_pressed() -> void: ui_manager.push(&"OptionsMenu")
