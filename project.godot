@@ -25,8 +25,8 @@ buses/default_bus_layout="res://assets/default_bus_layout.tres"
 
 [autoload]
 
-UI="*uid://4ya3j5x8npup"
-NetworkManger="*uid://y7kcphdpq347"
+UIGuy="*uid://4ya3j5x8npup"
+NetworkGuy="*uid://ci4mh8pew3qh"
 
 [editor]
 

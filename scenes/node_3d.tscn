@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cl5y7buq1g7yu"]
 
-[ext_resource type="PackedScene" uid="uid://brfankd6hskx1" path="res://scenes/player.tscn" id="1_5t4e2"]
 [ext_resource type="Script" uid="uid://mrit4d7kccj7" path="res://Scripts/game_scripts/zombie_scripts/zombie_spawner.gd" id="10_2u1at"]
 [ext_resource type="PackedScene" uid="uid://b5hagdvhitign" path="res://scenes/opp.tscn" id="14_6l3rs"]
 
@@ -78,10 +77,6 @@ albedo_color = Color(0.972549, 1, 0.70980394, 1)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1223653238]
 environment = SubResource("Environment_noarx")
 
-[node name="player" parent="." unique_id=861523990 instance=ExtResource("1_5t4e2")]
-unique_name_in_owner = true
-transform = Transform3D(-0.06686908, 0, 0.9977618, 0, 1, 0, -0.9977618, 0, -0.06686908, 6.2684994, 1.5607417, 0)
-
 [node name="ZombieManager" type="Node3D" parent="." unique_id=907975378 groups=["spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0191898, -0.9519602, -1.4252374)
 script = ExtResource("10_2u1at")
@@ -110,7 +105,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.158693, 1.037827, -28.107
 [node name="Timer" type="Timer" parent="ZombieManager" unique_id=1710540815]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1924267470]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.009853363, 0, 0.0038833618)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.020257711, 0.007941246, -0.0834465)
 navigation_mesh = SubResource("NavigationMesh_74n7r")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1452199014]
@@ -296,3 +291,12 @@ distance_fade_shadow = 15.0
 distance_fade_length = 20.0
 spot_range = 63.62628
 spot_angle = 51.58629
+
+[node name="SpawnPoint" type="Node3D" parent="." unique_id=1728420159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6605365, -0.21517485, 0)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1273514882]
+_spawnable_scenes = PackedStringArray("uid://brfankd6hskx1")
+spawn_path = NodePath("../SpawnPoint")
+
+[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawned"]

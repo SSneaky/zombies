@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ci4mh8pew3qh"]
+
+[ext_resource type="Script" uid="uid://y7kcphdpq347" path="res://Scripts/NetworkGuy/NetworkGuy.gd" id="1_4dnet"]
+[ext_resource type="Script" uid="uid://cv7dhoh1e2rhe" path="res://Scripts/NetworkGuy/PlayerSpawner.gd" id="2_8ivhu"]
+
+[node name="NetworkGuy" type="Node" unique_id=1457961818]
+script = ExtResource("1_4dnet")
+
+[node name="PlayerSpawner" type="Node" parent="." unique_id=170516543]
+script = ExtResource("2_8ivhu")

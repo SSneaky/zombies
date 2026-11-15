@@ -1,15 +1,22 @@
-extends Node3D
+extends Node
 
 const PLAYER = preload("uid://brfankd6hskx1")
 
 var players: Array[CharacterBody3D]
 
 func _ready() -> void:
-	NetworkManger.host_created.connect(_on_host_created)
+	NetworkGuy.host_created.connect(_on_host_created)
+	UIGuy.map_changed.connect(_on_map_changed)
+
+func _on_map_changed(path: String) -> void:
+	if path != UIGuy.start_path:
+		for p in NetworkGuy.get_party():
+			spawn_player(1)
 
 func _on_host_created() -> void:
-	spawn_player(multiplayer.get_unique_id())
-	multiplayer.peer_connected.connect(spawn_player)
+	#spawn_player(multiplayer.get_unique_id())
+	#multiplayer.peer_connected.connect(spawn_player)
+	pass
 
 func spawn_player(peer_id: int) -> void:
 	if not multiplayer.is_server():

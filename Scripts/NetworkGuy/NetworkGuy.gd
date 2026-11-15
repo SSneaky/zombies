@@ -2,7 +2,7 @@ extends Node
 
 signal host_created
 signal party_changed
-signal part_left
+signal party_left
 
 const LOBBY_TYPE := Steam.LobbyType.LOBBY_TYPE_FRIENDS_ONLY
 const MAX_MEMBERS := 4
@@ -10,7 +10,7 @@ const MAX_MEMBERS := 4
 var peer = SteamMultiplayerPeer
 var lobby_id = 0
 
-func _ready() -> void:
+func _ready() -> void	:
 	Steam.initRelayNetworkAccess()
 	Steam.lobby_created.connect(_on_lobby_created)
 	Steam.lobby_joined.connect(_on_lobby_joined)
@@ -63,4 +63,4 @@ func leave_party() -> void:
 	Steam.leaveLobby(lobby_id)
 	lobby_id = 0
 	multiplayer.multiplayer_peer = null
-	part_left.emit()
+	party_left.emit()

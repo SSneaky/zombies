@@ -1,12 +1,9 @@
 [gd_scene format=3 uid="uid://6ycbxrnp6gn8"]
 
-[ext_resource type="Script" uid="uid://cv7dhoh1e2rhe" path="res://Scripts/game_scripts/lobby.gd" id="1_o1atq"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1atq"]
 albedo_color = Color(1, 0.6893704, 0.39297795, 1)
 
 [node name="Lobby" type="Node3D" unique_id=262699451]
-script = ExtResource("1_o1atq")
 
 [node name="Layout" type="Node3D" parent="." unique_id=1915699105]
 

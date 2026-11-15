@@ -1,6 +1,7 @@
 extends Control
 class_name UIManager
 
+signal map_changed(path: String)
 signal screen_changed(base: StringName, top: StringName)
 signal pause_changed(is_paused: bool)
 
@@ -70,18 +71,12 @@ func clear_screen(apply := true) -> void:
 func top() -> StringName:
 	return _screen_history.back() if not _screen_history.is_empty() else &""
 
-#func get_kids() -> Array:
-	
-
 func change_map(path: String) -> void:
-	if not current_map_path == start_path:
 		current_map_path = path
 		clear_screen(false)
 		get_tree().change_scene_to_file(path)
+		map_changed.emit(path)
 		set_base(&"StartMenu" if path == start_path else &"PlayerHud")
-	else:
-		clear_screen(false)
-		set_base(&"StartMenu")
 
 func restart() -> void:
 	clear_screen()
@@ -114,5 +109,5 @@ func _input(event: InputEvent) -> void:
 
 #multiplayer logic, trying to find a home for it
 func _on_play_button_pressed() -> void:
-	NetworkManger.host_lobby()
+	NetworkGuy.host_lobby()
 	

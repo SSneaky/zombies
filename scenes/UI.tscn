@@ -359,9 +359,8 @@ offset_bottom = 8.0
 layout_mode = 2
 text = "player name"
 
-[node name="OptionsMenu" type="Control" parent="." unique_id=1781938007]
-visible = false
-layout_mode = 1
+[node name="OptionsMenu" type="Control" parent="CanvasLayer" unique_id=1781938007]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -369,7 +368,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_xpksx")
 
-[node name="ColorRect" type="ColorRect" parent="OptionsMenu" unique_id=1788514879]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/OptionsMenu" unique_id=1788514879]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -378,7 +377,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.16500518, 1.17318706e-07, 4.512258e-08, 1)
 
-[node name="TitleLabel" type="Label" parent="OptionsMenu" unique_id=338796379]
+[node name="TitleLabel" type="Label" parent="CanvasLayer/OptionsMenu" unique_id=338796379]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -392,15 +391,7 @@ theme_override_font_sizes/font_size = 58
 text = "Options n' stuff"
 horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="OptionsMenu" unique_id=1407598408]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 583.0
-offset_right = 95.0
-offset_bottom = 614.0
-text = "Back"
-
-[node name="Panel" type="Panel" parent="OptionsMenu" unique_id=2033101360]
+[node name="Panel" type="Panel" parent="CanvasLayer/OptionsMenu" unique_id=2033101360]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -414,7 +405,7 @@ offset_bottom = 232.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HSlider" type="HSlider" parent="OptionsMenu/Panel" unique_id=701763182]
+[node name="HSlider" type="HSlider" parent="CanvasLayer/OptionsMenu/Panel" unique_id=701763182]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -430,7 +421,7 @@ theme_override_styles/slider = SubResource("StyleBoxLine_74n7r")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_xpksx")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_xpksx")
 
-[node name="HSlider2" type="HSlider" parent="OptionsMenu/Panel" unique_id=1270826100]
+[node name="HSlider2" type="HSlider" parent="CanvasLayer/OptionsMenu/Panel" unique_id=1270826100]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -446,7 +437,7 @@ theme_override_styles/slider = SubResource("StyleBoxLine_74n7r")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_xpksx")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_xpksx")
 
-[node name="FXVolume" type="Label" parent="OptionsMenu/Panel" unique_id=175035335]
+[node name="FXVolume" type="Label" parent="CanvasLayer/OptionsMenu/Panel" unique_id=175035335]
 layout_mode = 0
 offset_left = 83.0
 offset_top = 153.0
@@ -454,10 +445,18 @@ offset_right = 123.0
 offset_bottom = 176.0
 text = "FX Volume"
 
-[node name="MusicVolume" type="Label" parent="OptionsMenu/Panel" unique_id=730457128]
+[node name="MusicVolume" type="Label" parent="CanvasLayer/OptionsMenu/Panel" unique_id=730457128]
 layout_mode = 0
 offset_left = 83.0
 offset_top = 229.0
 offset_right = 165.0
 offset_bottom = 252.0
 text = "Music Volume"
+
+[node name="BackButton" type="Button" parent="CanvasLayer/OptionsMenu" unique_id=1407598408]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 583.0
+offset_right = 95.0
+offset_bottom = 614.0
+text = "Back"

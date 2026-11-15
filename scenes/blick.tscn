@@ -22,7 +22,7 @@ mesh = SubResource("BoxMesh_a202f")
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.0054754317, -0.52088785, 0.17792678)
 
 [node name="FlashLight" type="SpotLight3D" parent="." unique_id=655770839]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.262, -0.201)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.262, -0.29696986)
 light_energy = 3.215
 light_size = 0.566
 shadow_enabled = true
