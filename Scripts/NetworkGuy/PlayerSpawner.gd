@@ -24,7 +24,7 @@ func spawn_player(peer_id: int) -> void:
 	var new_player := PLAYER.instantiate() as CharacterBody3D
 	new_player.name = str(peer_id)
 	new_player.position = Vector3.ZERO
-	$SpawnPoint.add_child(new_player)
+	get_tree().get_first_node_in_group(&"MPspawner").add_child(new_player)
 	initialize_player(new_player)
 
 func initialize_player(player: CharacterBody3D) -> void:

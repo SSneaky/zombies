@@ -15,25 +15,31 @@ func _ready() -> void	:
 	Steam.lobby_created.connect(_on_lobby_created)
 	Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.join_requested.connect(_on_join_requested)
+	Steam.lobby_chat_update.connect(func(_l, _c, _m, _s): party_changed.emit())
+	Steam.lobby_data_update.connect(func(_s, _l, _m): party_changed.emit())
 
 func _process(delta: float) -> void:
 	Steam.run_callbacks()
 
-func _on_lobby_created(connect: int, lobby_id: int):
-	if connect == Steam.RESULT_OK:
+func _on_lobby_created(result: int, new_lobby_id: int):
+	if result == Steam.RESULT_OK:
+		lobby_id = new_lobby_id
 		peer = SteamMultiplayerPeer.new()
 		peer.server_relay = true
 		peer.create_host()
 		multiplayer.multiplayer_peer = peer
 		host_created.emit()
+		party_changed.emit()
 
-func _on_lobby_joined(lobby_id: int, permissions: int, locked: bool, response: int) -> void:
+func _on_lobby_joined(joined_id: int, _permissions: int, locked: bool, response: int) -> void:
 	if response == Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
+		lobby_id = joined_id
+		party_changed.emit()
 		if Steam.getLobbyOwner(lobby_id) == Steam.getSteamID():
 			return
 		peer = SteamMultiplayerPeer.new()
 		peer.server_relay = true
-		peer.create_client(Steam.getLobbyOwner(lobby_id))
+		peer.create_client(Steam.getLobbyOwner(joined_id))
 		multiplayer.multiplayer_peer = peer
 
 func _on_join_requested(lobby_id: int, steam_id: int) -> void:
