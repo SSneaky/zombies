@@ -13,6 +13,7 @@ func _ready() -> void:
 	visibility_changed.connect(_refresh_party)
 
 func _refresh_party() -> void:
+	map_button.disabled = not multiplayer.is_server()
 	for child in party_list.get_children():
 		child.queue_free()
 	for member in NetworkGuy.get_party():
@@ -22,7 +23,7 @@ func _refresh_party() -> void:
 		
 
 func _on_map_pressed() -> void:
-	ui_manager.change_map("res://scenes/node_3d.tscn")
+	NetworkGuy.start_game("res://scenes/node_3d.tscn")
 
 func _on_back_pressed() -> void: 
 	NetworkGuy.leave_party()
