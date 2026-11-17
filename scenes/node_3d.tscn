@@ -104,6 +104,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.158693, 1.037827, -28.107
 
 [node name="Timer" type="Timer" parent="ZombieManager" unique_id=1710540815]
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="ZombieManager" unique_id=1978583072]
+_spawnable_scenes = PackedStringArray("uid://b5hagdvhitign")
+spawn_path = NodePath("../ZombieSpawner")
+
+[node name="ZombieSpawner" type="Node3D" parent="ZombieManager" unique_id=514270488]
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1924267470]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.020257711, 0.007941246, -0.0834465)
 navigation_mesh = SubResource("NavigationMesh_74n7r")

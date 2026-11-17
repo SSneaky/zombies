@@ -93,7 +93,7 @@ func _fire_pellet() -> void:
 	if ray.is_colliding():
 		var target = ray.get_collider()
 		if target.is_in_group('opps'):
-			target.get_node('Health').take_damage(current.damage)
+			target.hit.rpc_id(1, current.damage, multiplayer.get_unique_id())
 	ray.rotation = Vector3.ZERO
 	
 func _reload() -> void:

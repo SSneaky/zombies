@@ -8,7 +8,7 @@ extends CharacterBody3D
 
 @onready var attack_area: Area3D = $AttackArea
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var player: Node3D = get_tree().get_first_node_in_group("player")
+@onready var player: Node3D = _nearest_player()
 @onready var health: Health = $Health
 @onready var mesh: MeshInstance3D = $MeshInstance3D
 @onready var idle_sound: AudioStreamPlayer3D = $IdleSound
@@ -21,6 +21,8 @@ extends CharacterBody3D
 var player_in_range: Node3D = null
 var cooldown_left: float = 0.0
 var hurt_material := StandardMaterial3D.new()
+var last_attacker := 1
+
 
 func _ready() -> void:
 	health.died.connect(_on_died)
@@ -41,6 +43,37 @@ func _on_body_excited(body: Node3D) -> void:
 	if body == player_in_range:
 		player_in_range = null
 
+func _nearest_player() -> Node3D:
+	var best: Node3D = null
+	var best_d := INF
+	for p in get_tree().get_nodes_in_group("player"):
+		if not p is CharacterBody3D or p.health.current_health <= 0:
+			continue
+		var d := global_position.distance_squared_to(p.global_position)
+		if d < best_d:
+			best_d = d
+			best = p
+	return best
+
+@rpc("any_peer", "call_local", "reliable")
+func take_hit(amount: int) -> void:
+	var sender := multiplayer.get_remote_sender_id()
+	if sender != 0 and sender != 1:
+		return
+	if is_multiplayer_authority():
+		health.take_damage(amount)
+
+@rpc("any_peer", "call_local", "reliable")
+func hit(amount: int, attacker_id: int) -> void:
+	if not multiplayer.is_server():
+		return
+	last_attacker = attacker_id
+	health.take_damage(amount)
+
+@rpc("authority", "call_local", "unreliable")
+func _fx_attack() -> void:
+	attack_sound.pitch_scale = randf_range(0.5, 1.9)
+	attack_sound.play()
 
 func _on_hurt(_current: int, _maximum: int) -> void:
 	if health.current_health <= 0:
@@ -49,11 +82,16 @@ func _on_hurt(_current: int, _maximum: int) -> void:
 	hurt_sound.play()
 	mesh.material_overlay = hurt_material
 	await get_tree().create_timer(0.1).timeout
-	mesh.material_overlay = null 
+	mesh.material_overlay = null
+
+@rpc("authority", "call_local", "unreliable")
+func _fx_hurt() -> void:
+	hurt_sound.pitch_scale = randf_range(0.5, 1.9)
+	hurt_sound.play()
 
 func _on_died() -> void:
 	if player:
-		player.add_kill()
+		player.add_kilL.rpc_id(last_attacker)
 	remove_from_group('opps')
 	set_physics_process(false)
 	collision_layer = 0
@@ -72,6 +110,10 @@ func _on_died() -> void:
 		await death_sound.finished
 	queue_free()
 
+@rpc("authority", "call_local", "unreliable")
+func _fx_died() -> void:
+	death_sound.play()
+
 func _on_idle_timer() -> void:
 	idle_sound.pitch_scale = randf_range(0.5, 1.9)
 	idle_sound.play()
@@ -79,13 +121,15 @@ func _on_idle_timer() -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	if not multiplayer.is_server():
+		return
 	cooldown_left -= delta
 	
 	if player == null:
 		return
 	
 	if player_in_range and cooldown_left <= 0.0:
-		player_in_range.get_node("Health").take_damage(damage) 
+		player_in_range.take_hit.rpc_id(player_in_range.get_multiplayer_authority(), damage) 
 		attack_sound.pitch_scale = randf_range(0.5, 1.9)
 		attack_sound.play()
 		cooldown_left = attack_cooldown

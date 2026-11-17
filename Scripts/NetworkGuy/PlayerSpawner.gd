@@ -52,6 +52,7 @@ func _check_all_loaded() -> void:
 	spawn_player(multiplayer.get_unique_id())
 	for id in multiplayer.get_peers():
 		spawn_player(id)
+	get_tree().get_first_node_in_group("spawner").begin()
 
 func spawn_player(peer_id: int) -> void:
 	var spawner := get_tree().get_first_node_in_group(&"MPspawner") as MultiplayerSpawner

@@ -18,6 +18,14 @@ albedo_color = Color(0.8990396, 0, 0, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_a0tk4"]
 radius = 0.7045378
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2h8y8"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="opp" type="CharacterBody3D" unique_id=378033695 groups=["opps"]]
 script = ExtResource("1_8182q")
 damage = 12
@@ -38,7 +46,7 @@ metadata/_custom_type_script = "uid://bhreaj1xputgv"
 
 [node name="AttackArea" type="Area3D" parent="." unique_id=813436399]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea" unique_id=857183112 groups=["player"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea" unique_id=857183112]
 shape = SubResource("SphereShape3D_a0tk4")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=390284340]
@@ -62,3 +70,6 @@ volume_db = 22.943
 unit_size = 19.4
 
 [node name="IdleTimer" type="Timer" parent="." unique_id=422322979]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1454475533]
+replication_config = SubResource("SceneReplicationConfig_2h8y8")

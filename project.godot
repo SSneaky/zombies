@@ -38,6 +38,7 @@ version_control/autoload_on_startup=true
 GUIstuff=""
 player=""
 MPspawner=""
+opps=""
 
 [input]
 

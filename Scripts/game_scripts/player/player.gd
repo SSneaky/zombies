@@ -111,7 +111,7 @@ func add_ammo(ammo_type: String, amount: int) -> bool:
 func show_pickup_message(text: String) -> void:
 	return gun.show_pickup_message(text)
 
-
+@rpc("any_peer", "call_local", "reliable")
 func add_kill() -> void:
 	kills += 1
 	_update_kills_label()

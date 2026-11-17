@@ -22,8 +22,12 @@ var remaining: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	timer.one_shot = false
+	if not multiplayer.is_server():
+		return
 	timer.timeout.connect(_spawn_zombie)
-	_start_break.call_deferred()
+
+func begin() -> void:
+	_start_break()
 
 func _start_break() -> void:
 	for t in range(break_seconds, 0, -1):
@@ -59,7 +63,7 @@ func _spawn_zombie() -> void:
 	zombie_health.max_health = int(zombie_health.max_health * (1.0 + health_growth * (wave - 1)))
 	zombie_health.died.connect(_on_zombie_died)
 	
-	world.add_child(zombie)
+	world.add_child(zombie, true)
 	to_spawn -= 1
 	if to_spawn <= 0:
 		timer.stop()
@@ -69,6 +73,10 @@ func _on_zombie_died() -> void:
 	remaining_changed.emit(remaining)
 	if remaining <= 0:
 		_start_break()
+
+func _mirror(w: int, rem: int) -> void:
+	wave_started.emit(w)
+	remaining_changed.emit(rem)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
