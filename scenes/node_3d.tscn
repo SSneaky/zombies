@@ -1,11 +1,16 @@
 [gd_scene format=3 uid="uid://cl5y7buq1g7yu"]
 
+[ext_resource type="Script" uid="uid://dxxjti2ketv42" path="res://scenes/Button3D.gd" id="3_5t4e2"]
 [ext_resource type="Script" uid="uid://mrit4d7kccj7" path="res://Scripts/game_scripts/zombie_scripts/zombie_spawner.gd" id="10_2u1at"]
 [ext_resource type="PackedScene" uid="uid://b5hagdvhitign" path="res://scenes/opp.tscn" id="14_6l3rs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4xowi"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+sky_top_color = Color(9.024516e-09, 0.03142562, 0.04363717, 1)
+sky_horizon_color = Color(0.09158941, 0.011276832, 0, 1)
+sky_curve = 0.037499975
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.09019608, 0.011764706, 0, 1)
+use_debanding = false
 
 [sub_resource type="Sky" id="Sky_a202f"]
 sky_material = SubResource("ProceduralSkyMaterial_4xowi")
@@ -13,7 +18,7 @@ sky_material = SubResource("ProceduralSkyMaterial_4xowi")
 [sub_resource type="Environment" id="Environment_noarx"]
 background_mode = 2
 sky = SubResource("Sky_a202f")
-ambient_light_source = 1
+ambient_light_sky_contribution = 0.0
 tonemap_mode = 2
 glow_enabled = true
 fog_light_color = Color(0.12743258, 0, 0.007587124, 1)
@@ -72,7 +77,65 @@ albedo_color = Color(0.972549, 1, 0.70980394, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdqbm"]
 albedo_color = Color(0.972549, 1, 0.70980394, 1)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ns6u7"]
+height = 0.1442627
+radius = 0.21582031
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukj8e"]
+albedo_color = Color(0.36862746, 0.7764706, 0.14509805, 1)
+emission_enabled = true
+emission = Color(0.36862746, 0.7764706, 0.14509805, 1)
+emission_energy_multiplier = 0.6
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lw3ka"]
+material = SubResource("StandardMaterial3D_ukj8e")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.09990235
+
 [node name="Testing Grounds" type="Node3D" unique_id=358296309]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1830776934]
+transform = Transform3D(-0.09125958, 0.114240795, 0.9892526, 0.011467951, 0.9934526, -0.1136679, -0.9957611, 0.00097141735, -0.09197217, -23.159393, 0.05492668, -16.300388)
+light_color = Color(0.7137255, 0, 0, 1)
+light_energy = 0.918
+light_indirect_energy = 4.02
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 20.0
+distance_fade_shadow = 15.0
+distance_fade_length = 20.0
+spot_range = 63.62628
+spot_angle = 51.58629
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=2118311719]
+transform = Transform3D(1, 0, 0, 0, -0.65203893, 0.7581855, 0, -0.7581855, -0.65203893, 19.840067, 6.088925, -36.95182)
+light_color = Color(0.96862745, 0.12156863, 0, 1)
+light_energy = 5.78
+shadow_enabled = true
+spot_range = 28.73664
+spot_angle = 48.888954
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="." unique_id=171726716]
+transform = Transform3D(1, 0, 0, 0, -4.9873193e-05, 1, 0, -1, -4.9873193e-05, 7.979742, 9.843119, -45.07572)
+light_color = Color(0.93903244, 0.7623353, 7.70092e-07, 1)
+shadow_enabled = true
+spot_range = 27.813217
+spot_angle = 57.281696
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="." unique_id=192737026]
+transform = Transform3D(1, 0, 0, 0, -4.9873193e-05, 1, 0, -1, -4.9873193e-05, -14.414986, 9.843119, -45.07572)
+light_color = Color(0.93903244, 0.7623353, 7.70092e-07, 1)
+shadow_enabled = true
+spot_range = 27.813217
+spot_angle = 57.281696
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="." unique_id=1270025616]
+transform = Transform3D(1, 0, 0, 0, -4.9873193e-05, 1, 0, -1, -4.9873193e-05, 27.367203, 9.843119, -45.07572)
+light_color = Color(0.93903244, 0.7623353, 7.70092e-07, 1)
+shadow_enabled = true
+spot_range = 27.813217
+spot_angle = 57.281696
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1223653238]
 environment = SubResource("Environment_noarx")
@@ -86,12 +149,6 @@ first_wave_size = 10
 wave_growth = 10
 spawn_interval = 0.5
 break_seconds = 3
-
-[node name="MultiplayerSpawner2" type="MultiplayerSpawner" parent="ZombieManager" unique_id=1978583072]
-_spawnable_scenes = PackedStringArray("uid://b5hagdvhitign")
-spawn_path = NodePath("../ZombieSpawner")
-
-[node name="ZombieSpawner" type="Node3D" parent="ZombieManager" unique_id=514270488]
 
 [node name="Marker3D" type="Marker3D" parent="ZombieManager" unique_id=1526393998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.412899, 7.3994694, 2.3259697)
@@ -110,14 +167,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.158693, 1.037827, -28.107
 
 [node name="Timer" type="Timer" parent="ZombieManager" unique_id=1710540815]
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="ZombieManager" unique_id=1978583072]
+_spawnable_scenes = PackedStringArray("uid://b5hagdvhitign")
+spawn_path = NodePath("../ZombieSpawner")
+
+[node name="ZombieSpawner" type="Node3D" parent="ZombieManager" unique_id=514270488]
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1924267470]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.020257711, 0.007941246, -0.0834465)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.038169622, 0.007941246, -0.075228214)
 navigation_mesh = SubResource("NavigationMesh_74n7r")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1452199014]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25081608, 0)
 use_collision = true
 size = Vector3(150, 0.5, 150)
+material = SubResource("StandardMaterial3D_jfavu")
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1332713934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7724004, -0.25081608, -89.11283)
+use_collision = true
+size = Vector3(104.82068, 0.5, 30.254028)
+material = SubResource("StandardMaterial3D_jfavu")
+
+[node name="CSGBox3D39" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1602925102]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.754665, -0.25081608, -119.80777)
+use_collision = true
+size = Vector3(5.0679016, 0.5, 30.254028)
+material = SubResource("StandardMaterial3D_jfavu")
+
+[node name="CSGBox3D41" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1610762609]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.410114, -0.25081608, -107.63953)
+use_collision = true
+size = Vector3(5.0679016, 0.5, 5.9175415)
 material = SubResource("StandardMaterial3D_jfavu")
 
 [node name="CSGBox3D17" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1332150846]
@@ -259,9 +340,39 @@ size = Vector3(48.292183, 0.5, 34.21344)
 material = SubResource("StandardMaterial3D_wlxy5")
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="NavigationRegion3D" unique_id=780236826]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, -0.20119601, 30.976154, -74.24579)
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, -23.365562, 30.976154, -74.24579)
 use_collision = true
-size = Vector3(63.61106, 0.5, 154.37207)
+size = Vector3(63.61106, 0.5, 108.043335)
+material = SubResource("StandardMaterial3D_3v7ru")
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="NavigationRegion3D" unique_id=156593991]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 62.104347, 30.976154, -74.24579)
+use_collision = true
+size = Vector3(63.61106, 0.5, 27.773193)
+material = SubResource("StandardMaterial3D_3v7ru")
+
+[node name="CSGBox3D36" type="CSGBox3D" parent="NavigationRegion3D" unique_id=983678308]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 39.567856, 36.23536, -74.24579)
+use_collision = true
+size = Vector3(53.092674, 0.5, 17.876648)
+material = SubResource("StandardMaterial3D_3v7ru")
+
+[node name="CSGBox3D37" type="CSGBox3D" parent="NavigationRegion3D" unique_id=87619411]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 39.567856, -5.125431, -74.24579)
+use_collision = true
+size = Vector3(13.738598, 0.5, 17.876648)
+material = SubResource("StandardMaterial3D_3v7ru")
+
+[node name="CSGBox3D38" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1289685453]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 42.73295, -1.1658565, -104.75324)
+use_collision = true
+size = Vector3(4.114416, 0.5, 6.7079926)
+material = SubResource("StandardMaterial3D_3v7ru")
+
+[node name="CSGBox3D40" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1987208944]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 28.930786, -0.31333876, -104.75324)
+use_collision = true
+size = Vector3(4.114416, 0.5, 6.7079926)
 material = SubResource("StandardMaterial3D_3v7ru")
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1701204175]
@@ -285,22 +396,29 @@ transform = Transform3D(-4.371139e-08, -0.2789911, -0.9602937, 0, 0.9602937, -0.
 use_collision = true
 size = Vector3(18.751404, 0.5, 64.66139)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="NavigationRegion3D" unique_id=1830776934]
-transform = Transform3D(-0.091259584, 0.11424079, 0.9892526, 0.011467952, 0.99345255, -0.11366789, -0.9957612, 0.0009714176, -0.091972165, -46.242447, 0.093970865, -32.45032)
-light_color = Color(0.7137255, 0, 0, 1)
-light_energy = 0.918
-light_indirect_energy = 4.02
-shadow_enabled = true
-distance_fade_enabled = true
-distance_fade_begin = 20.0
-distance_fade_shadow = 15.0
-distance_fade_length = 20.0
-spot_range = 63.62628
-spot_angle = 51.58629
-
 [node name="SpawnPoint" type="Node3D" parent="." unique_id=1728420159]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6605365, 1.7013752, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.175337, 1.7013752, -46.34893)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1273514882 groups=["MPspawner"]]
 _spawnable_scenes = PackedStringArray("uid://brfankd6hskx1")
 spawn_path = NodePath("../SpawnPoint")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=641179760]
+transform = Transform3D(1, 0, 0, 0, 0.96167034, -0.27420828, 0, 0.27420828, 0.96167034, 21.321716, 0.55988777, -52.410122)
+layers = 3
+size = Vector3(3.3795166, 0.34277344, 1)
+
+[node name="Button3D" type="StaticBody3D" parent="CSGBox3D" unique_id=2074864316]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.79205894, 0.096184395, 0.057793316)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("3_5t4e2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D/Button3D" unique_id=1364542490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10204792, 0)
+shape = SubResource("CylinderShape3D_ns6u7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGBox3D/Button3D" unique_id=1397540270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112296104, 0)
+layers = 3
+mesh = SubResource("CylinderMesh_lw3ka")

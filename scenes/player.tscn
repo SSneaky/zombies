@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://brfankd6hskx1"]
 
 [ext_resource type="Script" uid="uid://262xmuwmtvqv" path="res://Scripts/game_scripts/player/player.gd" id="1_3v2ag"]
+[ext_resource type="Script" uid="uid://go4nek4781an" path="res://scenes/ray.gd" id="2_f1ej7"]
 [ext_resource type="Script" uid="uid://lcvg17qkof2j" path="res://Scripts/game_scripts/gun_scripts/weapon_data.gd" id="2_jej6c"]
 [ext_resource type="Resource" uid="uid://bxe1i0y5gyuag" path="res://assets/blick.tres" id="3_f1ej7"]
 [ext_resource type="Resource" uid="uid://deuyjmbmfrh4l" path="res://assets/shotty.tres" id="4_oprun"]
@@ -54,8 +55,10 @@ omni_range = 13.774828
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.571, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="neck" unique_id=1295684884]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.37114e-08, 5.9604645e-08, 0.08699989, -0.0539999)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371141e-08, 7.0780516e-08, 0.08699989, -0.64472884)
 target_position = Vector3(0, 10, 0)
+collision_mask = 3
+script = ExtResource("2_f1ej7")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="neck" unique_id=273569723]
 spring_length = 0.0

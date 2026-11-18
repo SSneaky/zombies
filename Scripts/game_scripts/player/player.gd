@@ -75,8 +75,8 @@ func _on_health_changed(ahora: int, maximum: int) -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func take_hit(amount: int) -> void:
-	var sender := multiplayer.get_remote_sender_id()
-	if sender != 0 and sender != 1:
+	var hsender := multiplayer.get_remote_sender_id()
+	if hsender != 0 and hsender != 1:
 		return
 	if is_multiplayer_authority():
 		health.take_damage(amount)
@@ -121,6 +121,9 @@ func show_pickup_message(text: String) -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func add_kill() -> void:
+	var ksender := multiplayer.get_remote_sender_id()
+	if ksender != 0 and ksender != 1:
+		return
 	kills += 1
 	_update_kills_label()
 

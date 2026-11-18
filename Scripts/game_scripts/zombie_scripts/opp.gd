@@ -8,7 +8,7 @@ extends CharacterBody3D
 
 @onready var attack_area: Area3D = $AttackArea
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var player: Node3D = _nearest_player()
+@onready var player: Node3D = null
 @onready var health: Health = $Health
 @onready var mesh: MeshInstance3D = $MeshInstance3D
 @onready var idle_sound: AudioStreamPlayer3D = $IdleSound
@@ -70,23 +70,34 @@ func _fx_attack() -> void:
 func _on_hurt(_current: int, _maximum: int) -> void:
 	if health.current_health <= 0:
 		return
-	hurt_sound.pitch_scale = randf_range(0.5, 1.9)
-	hurt_sound.play()
-	mesh.material_overlay = hurt_material
-	await get_tree().create_timer(0.1).timeout
-	mesh.material_overlay = null
+	_fx_hurt.rpc()
+	#hurt_sound.pitch_scale = randf_range(0.5, 1.9)
+	#hurt_sound.play()
+	#mesh.material_overlay = hurt_material
+	#await get_tree().create_timer(0.1).timeout
+	#mesh.material_overlay = null
 
 @rpc("authority", "call_local", "unreliable")
 func _fx_hurt() -> void:
 	hurt_sound.pitch_scale = randf_range(0.5, 1.9)
 	hurt_sound.play()
 	mesh.material_overlay = hurt_material
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.05).timeout
 	mesh.material_overlay = null
 
 func _on_died() -> void:
-	if player:
-		player.add_kill.rpc_id(last_attacker)
+	var killer := get_tree().current_scene.get_node_or_null("SpawnPoint/%d" % last_attacker)
+	if killer:
+		killer.add_kill.rpc_id(last_attacker)
+	if not drops.is_empty() and randf() < drop_chance:
+		#var world := get_parent() as Node3D
+		var drop: Node3D = drops.pick_random().instantiate()
+		get_tree().current_scene.add_child(drop)
+	
+	_fx_died.rpc()
+
+@rpc("authority", "call_local", "unreliable")
+func _fx_died() -> void:
 	remove_from_group('opps')
 	set_physics_process(false)
 	collision_layer = 0
@@ -96,18 +107,9 @@ func _on_died() -> void:
 	idle_timer.stop()
 	mesh.hide()
 	death_sound.play()
-	if not drops.is_empty() and randf() < drop_chance:
-		var world := get_parent() as Node3D
-		var drop: Node3D = drops.pick_random().instantiate()
-		drop.position = world.to_local(global_position) + Vector3(0, 0.3, 0)
-		world.add_child(drop)
 	if death_sound.stream:
 		await death_sound.finished
 	queue_free()
-
-@rpc("authority", "call_local", "unreliable")
-func _fx_died() -> void:
-	death_sound.play()
 
 func _on_idle_timer() -> void:
 	idle_sound.pitch_scale = randf_range(0.5, 1.9)
@@ -120,13 +122,17 @@ func _physics_process(delta: float) -> void:
 		return
 	cooldown_left -= delta
 	
-	if player == null:
-		return
+	var retarget_left := 0.0
+	retarget_left -= delta
+	if retarget_left <= 0.0 or not is_instance_valid(player):
+		player = _nearest_player()
+		retarget_left = 0.5
 	
 	if player_in_range and cooldown_left <= 0.0:
 		player_in_range.take_hit.rpc_id(player_in_range.get_multiplayer_authority(), damage) 
-		attack_sound.pitch_scale = randf_range(0.5, 1.9)
-		attack_sound.play()
+		#attack_sound.pitch_scale = randf_range(0.5, 1.9)
+		#attack_sound.play()
+		_fx_attack.rpc()
 		cooldown_left = attack_cooldown
 	# Add the gravity.
 	if not is_on_floor():

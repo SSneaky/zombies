@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bgmgu3isdmkey" path="res://Scripts/ui_scripts/ui.gd" id="1_3wlde"]
 [ext_resource type="Script" uid="uid://blf7ckkdggd6g" path="res://Scripts/ui_scripts/crosshair.gd" id="1_5en4g"]
 [ext_resource type="Script" uid="uid://du6e2t7d22rg3" path="res://Scripts/ui_scripts/pause_menu.gd" id="1_dj8aq"]
+[ext_resource type="Script" uid="uid://ccivwp0gdilgc" path="res://Scripts/ui_scripts/hud_manager.gd" id="2_24e4x"]
 [ext_resource type="Script" uid="uid://biqxcggslxlow" path="res://Scripts/ui_scripts/game_over_screen.gd" id="3_ua6yw"]
 [ext_resource type="Script" uid="uid://btfhqw1won4wh" path="res://Scripts/ui_scripts/start_menu.gd" id="4_ua6yw"]
 [ext_resource type="Script" uid="uid://cfqtl1ec3tu5a" path="res://Scripts/ui_scripts/map_select.gd" id="5_75u2n"]
@@ -38,6 +39,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_24e4x")
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer/PlayerHud" unique_id=690425078]
 layout_mode = 1
@@ -99,9 +101,25 @@ offset_right = 20.0
 offset_bottom = 93.0
 grow_horizontal = 2
 
+[node name="InteractiveLabel" type="Label" parent="CanvasLayer/PlayerHud" unique_id=1206986507]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 67.0
+offset_right = 51.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Interact - [ ? ]"
+
 [node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=1464076494 groups=["PauseMenu"]]
 unique_name_in_owner = true
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -163,6 +181,7 @@ text = "Im outta here"
 
 [node name="GameOverScreen" type="Control" parent="CanvasLayer" unique_id=1592423143]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -211,6 +230,7 @@ layout_mode = 2
 text = "OR JUST END IT ON A LOSS"
 
 [node name="StartMenu" type="Control" parent="CanvasLayer" unique_id=876872968]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -273,6 +293,7 @@ layout_mode = 2
 text = "EXIT"
 
 [node name="MapSelect" type="Control" parent="CanvasLayer" unique_id=706612214]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -360,6 +381,7 @@ layout_mode = 2
 text = "player name"
 
 [node name="OptionsMenu" type="Control" parent="CanvasLayer" unique_id=1781938007]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

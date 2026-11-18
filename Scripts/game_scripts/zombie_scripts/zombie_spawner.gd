@@ -42,6 +42,7 @@ func _start_wave() -> void:
 	wave_started.emit(wave)
 	remaining_changed.emit(remaining)
 	timer.start(spawn_interval)
+	_mirror.rpc(wave, remaining)
 
 func _spawn_zombie() -> void:
 	if to_spawn <= 0:
@@ -55,28 +56,33 @@ func _spawn_zombie() -> void:
 	if points.is_empty():
 		return
 	var point: Marker3D = points.pick_random()
-	var world := get_parent() as Node3D
+	var spawner := $ZombieSpawner as Node3D
 	var zombie: Node3D = zombie_scene.instantiate()
-	zombie.position = world.to_local(point.global_position)
+	zombie.position = spawner.to_local(point.global_position)
 	
 	var zombie_health: Health = zombie.get_node("Health")
 	zombie_health.max_health = int(zombie_health.max_health * (1.0 + health_growth * (wave - 1)))
 	zombie_health.died.connect(_on_zombie_died)
 	
-	world.add_child(zombie, true)
+	spawner.add_child(zombie, true)
 	to_spawn -= 1
 	if to_spawn <= 0:
 		timer.stop()
 
 func _on_zombie_died() -> void:
 	remaining -= 1
-	remaining_changed.emit(remaining)
+	_update_zremaining.rpc(remaining)
 	if remaining <= 0:
 		_start_break()
 
+@rpc("authority", "call_local", "reliable")
 func _mirror(w: int, rem: int) -> void:
 	wave_started.emit(w)
 	remaining_changed.emit(rem)
+
+@rpc("authority", "call_local", "reliable")
+func _update_zremaining(zrem: int) -> void:
+	remaining_changed.emit(zrem)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
