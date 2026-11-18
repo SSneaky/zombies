@@ -87,6 +87,12 @@ wave_growth = 10
 spawn_interval = 0.5
 break_seconds = 3
 
+[node name="MultiplayerSpawner2" type="MultiplayerSpawner" parent="ZombieManager" unique_id=1978583072]
+_spawnable_scenes = PackedStringArray("uid://b5hagdvhitign")
+spawn_path = NodePath("../ZombieSpawner")
+
+[node name="ZombieSpawner" type="Node3D" parent="ZombieManager" unique_id=514270488]
+
 [node name="Marker3D" type="Marker3D" parent="ZombieManager" unique_id=1526393998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.412899, 7.3994694, 2.3259697)
 
@@ -103,12 +109,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.07884, 1.327889, 36.09782
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.158693, 1.037827, -28.107153)
 
 [node name="Timer" type="Timer" parent="ZombieManager" unique_id=1710540815]
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="ZombieManager" unique_id=1978583072]
-_spawnable_scenes = PackedStringArray("uid://b5hagdvhitign")
-spawn_path = NodePath("../ZombieSpawner")
-
-[node name="ZombieSpawner" type="Node3D" parent="ZombieManager" unique_id=514270488]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1924267470]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.020257711, 0.007941246, -0.0834465)

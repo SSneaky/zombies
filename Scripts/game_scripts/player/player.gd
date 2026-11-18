@@ -73,6 +73,14 @@ func _on_health_changed(ahora: int, maximum: int) -> void:
 	health_bar.max_value = maximum
 	health_bar.value = ahora
 
+@rpc("any_peer", "call_local", "reliable")
+func take_hit(amount: int) -> void:
+	var sender := multiplayer.get_remote_sender_id()
+	if sender != 0 and sender != 1:
+		return
+	if is_multiplayer_authority():
+		health.take_damage(amount)
+
 func _on_died() -> void:
 	ui_manager.get_node("CanvasLayer/GameOverScreen/CenterContainer/VBoxContainer/FinalKillsLabel").text = "Kills: %d" % kills
 	ui_manager.push(&"GameOverScreen")

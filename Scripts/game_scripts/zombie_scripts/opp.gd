@@ -56,14 +56,6 @@ func _nearest_player() -> Node3D:
 	return best
 
 @rpc("any_peer", "call_local", "reliable")
-func take_hit(amount: int) -> void:
-	var sender := multiplayer.get_remote_sender_id()
-	if sender != 0 and sender != 1:
-		return
-	if is_multiplayer_authority():
-		health.take_damage(amount)
-
-@rpc("any_peer", "call_local", "reliable")
 func hit(amount: int, attacker_id: int) -> void:
 	if not multiplayer.is_server():
 		return
@@ -88,10 +80,13 @@ func _on_hurt(_current: int, _maximum: int) -> void:
 func _fx_hurt() -> void:
 	hurt_sound.pitch_scale = randf_range(0.5, 1.9)
 	hurt_sound.play()
+	mesh.material_overlay = hurt_material
+	await get_tree().create_timer(0.1).timeout
+	mesh.material_overlay = null
 
 func _on_died() -> void:
 	if player:
-		player.add_kilL.rpc_id(last_attacker)
+		player.add_kill.rpc_id(last_attacker)
 	remove_from_group('opps')
 	set_physics_process(false)
 	collision_layer = 0
