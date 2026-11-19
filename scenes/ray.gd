@@ -5,12 +5,12 @@ extends RayCast3D
 func _process(delta: float) -> void:
 	if not is_colliding():
 		print("wya")
-		hud._update_interact("")
+		hud._update_interact("bitch")
 		return
 		
 	else:
 		var collider = get_collider()
-		print(collider)
+		print(collider.get_class())
 		if collider == InteractiveThang:
 			print("hey")
 			hud._update_interact(collider.push_prompt())

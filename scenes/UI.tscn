@@ -482,3 +482,31 @@ offset_top = 583.0
 offset_right = 95.0
 offset_bottom = 614.0
 text = "Back"
+
+[node name="DebugMenu" type="Control" parent="CanvasLayer" unique_id=1508043735]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/DebugMenu" unique_id=1225373346]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -65.5
+offset_right = 358.0
+offset_bottom = 65.5
+grow_vertical = 2
+color = Color(0, 0, 0, 0.2627451)
+
+[node name="Label" type="Label" parent="CanvasLayer/DebugMenu/ColorRect" unique_id=1168842400]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "nah u debuggin twin"
+horizontal_alignment = 1

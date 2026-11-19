@@ -95,17 +95,26 @@ func _apply_state() -> void:
 	screen_changed.emit(base_screen, top())
 
 func _input(event: InputEvent) -> void:
-	if not event.is_action_pressed("exit"):
-		return
-	if base_screen != &"PlayerHud":
-		return
-	get_viewport().set_input_as_handled()
-	if top() == &"GameOverScreen":
-		return
-	if _screen_history.is_empty():
-		push(&"PauseMenu")
+	if event.is_action_pressed("exit"):
+		if base_screen != &"PlayerHud":
+			return
+		get_viewport().set_input_as_handled()
+		if top() == &"GameOverScreen":
+			return
+		if _screen_history.is_empty():
+			push(&"PauseMenu")
+		else:
+			pop()
+	elif event.is_action_pressed("debug"):
+		if base_screen != &"PlayerHud":
+			return
+		get_viewport().set_input_as_handled()
+		if top() == &"GameOverScreen":
+			return
+		if _screen_history.is_empty():
+			$CanvasLayer/DebugMenu.visible = not $CanvasLayer/DebugMenu.visible
 	else:
-		pop()
+		return
 
 #multiplayer logic, trying to find a home for it
 func _on_play_button_pressed() -> void:
