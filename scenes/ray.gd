@@ -4,15 +4,16 @@ extends RayCast3D
 
 func _process(delta: float) -> void:
 	if not is_colliding():
-		print("wya")
-		hud._update_interact("bitch")
+		hud._push_prompt("")
 		return
 		
 	else:
 		var collider = get_collider()
-		print(collider.get_class())
-		if collider == InteractiveThang:
-			print("hey")
-			hud._update_interact(collider.push_prompt())
+		#print(collider.get_class())
+		if collider is InteractiveThang:
+			if collider.is_disabled:
+				hud._clear_prompt()
+				return
+			hud._push_prompt(collider.get_prompt())
 			if Input.is_action_just_pressed(collider.action_needed):
-				collider.interact
+				collider.interact()

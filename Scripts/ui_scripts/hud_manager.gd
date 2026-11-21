@@ -4,12 +4,11 @@ extends Control
 
 
 func _ready() -> void:
-	interactive_label.visible = false
+	_clear_prompt()
 
-func _update_interact(prompt: String) -> void:
-	interactive_label.visible
+func _push_prompt(prompt: String) -> void:
+	interactive_label.visible = true
 	interactive_label.text = prompt
 
-
-func _process(delta: float) -> void:
-	pass
+func _clear_prompt() -> void:
+	interactive_label.text = ""

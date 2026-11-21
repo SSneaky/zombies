@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cl5y7buq1g7yu"]
 
-[ext_resource type="Script" uid="uid://dxxjti2ketv42" path="res://scenes/Button3D.gd" id="3_5t4e2"]
+[ext_resource type="PackedScene" uid="uid://6fj4tjdfx0yl" path="res://scenes/button_3d.tscn" id="3_5t4e2"]
 [ext_resource type="Script" uid="uid://mrit4d7kccj7" path="res://Scripts/game_scripts/zombie_scripts/zombie_spawner.gd" id="10_2u1at"]
 [ext_resource type="PackedScene" uid="uid://b5hagdvhitign" path="res://scenes/opp.tscn" id="14_6l3rs"]
 
@@ -76,22 +76,6 @@ albedo_color = Color(0.972549, 1, 0.70980394, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdqbm"]
 albedo_color = Color(0.972549, 1, 0.70980394, 1)
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ns6u7"]
-height = 0.1442627
-radius = 0.21582031
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukj8e"]
-albedo_color = Color(0.36862746, 0.7764706, 0.14509805, 1)
-emission_enabled = true
-emission = Color(0.36862746, 0.7764706, 0.14509805, 1)
-emission_energy_multiplier = 0.6
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_lw3ka"]
-material = SubResource("StandardMaterial3D_ukj8e")
-top_radius = 0.2
-bottom_radius = 0.2
-height = 0.09990235
 
 [node name="Testing Grounds" type="Node3D" unique_id=358296309]
 
@@ -408,17 +392,5 @@ transform = Transform3D(1, 0, 0, 0, 0.96167034, -0.27420828, 0, 0.27420828, 0.96
 layers = 3
 size = Vector3(3.3795166, 0.34277344, 1)
 
-[node name="Button3D" type="StaticBody3D" parent="CSGBox3D" unique_id=2074864316]
+[node name="Button3D" parent="CSGBox3D" unique_id=734791871 instance=ExtResource("3_5t4e2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.79205894, 0.096184395, 0.057793316)
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("3_5t4e2")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D/Button3D" unique_id=1364542490]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10204792, 0)
-shape = SubResource("CylinderShape3D_ns6u7")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGBox3D/Button3D" unique_id=1397540270]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112296104, 0)
-layers = 3
-mesh = SubResource("CylinderMesh_lw3ka")
